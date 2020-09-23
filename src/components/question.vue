@@ -45,147 +45,147 @@
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-
       
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
 
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
+      </b-list-group-item>
+
+      
+      <b-list-group-item class="d-flex align-items-center" href="#">
+        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
+        <span class="mr-auto" >BootstrapVue</span>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
       </b-list-group-item>
       
       <b-list-group-item class="d-flex align-items-center" href="#">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
         <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
+      
+      </b-list-group-item>
+      
+      <b-list-group-item class="d-flex align-items-center" href="#">
+        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
+        <span class="mr-auto" >BootstrapVue</span>
+      
+      </b-list-group-item>
+      
+      <b-list-group-item class="d-flex align-items-center" href="#">
+        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
+        <span class="mr-auto" >BootstrapVue</span>
+      
       </b-list-group-item>
       
      
