@@ -4,7 +4,7 @@
 <div>
   <b-navbar toggleable="lg" type="dark" variant="info">
     <div class="container">
-      <b-navbar-brand href="#">
+      <b-navbar-brand href="/">
       <img height="25px" src="https://www.computing.psu.ac.th/th/wp-content/uploads/2018/03/PSU_CoC_ENG.png">
     </b-navbar-brand>
     
@@ -12,10 +12,10 @@
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     
     <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav >
-        <b-nav-item active href="#">ทุนวิจัย</b-nav-item>
-        <b-nav-item active href="#">เอกสาร</b-nav-item>
-        <b-nav-item active href="#">คำถามทั่วไป</b-nav-item>
+        <b-navbar-nav >
+        <b-nav-item active href="/Research">ทุนวิจัย</b-nav-item>
+        <b-nav-item active href="/document">เอกสาร</b-nav-item>
+        <b-nav-item active href="/question">คำถามทั่วไป</b-nav-item>
       </b-navbar-nav>
       
       <!-- Right aligned nav items -->
@@ -42,151 +42,83 @@
      <h2>คำถามทั่วไป</h2>
    <b-list-group style="max-width: 100%;">
      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป1</span>       
       </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป2</span>       
       </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป3</span>       
       </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป4</span>       
       </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป5</span>       
       </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป6</span>       
       </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป7</span>       
       </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป8</span>       
       </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป9</span>       
+      </b-list-group-item>
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป10</span>       
+      </b-list-group-item>
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป11</span>       
+      </b-list-group-item>
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป12</span>       
+      </b-list-group-item>
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป13</span>       
+      </b-list-group-item>
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป14</span>       
+      </b-list-group-item>
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป15</span>       
+      </b-list-group-item>
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป16</span>       
+      </b-list-group-item>
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป17</span>       
+      </b-list-group-item>
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป18</span>       
+      </b-list-group-item>
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
+       <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
+        <span class="mr-auto" >คำถามทั่วไป19</span>       
       </b-list-group-item>
 
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
-      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png">
-        <span class="mr-auto" >BootstrapVue</span>
-      
-      </b-list-group-item>
       
      
     </b-list-group>

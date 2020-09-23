@@ -4,18 +4,17 @@
 <div>
   <b-navbar toggleable="lg" type="dark" variant="info">
     <div class="container">
-      <b-navbar-brand href="#">
+      <b-navbar-brand href="/">
       <img height="25px" src="https://www.computing.psu.ac.th/th/wp-content/uploads/2018/03/PSU_CoC_ENG.png">
     </b-navbar-brand>
-    
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     
     <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav >
-        <b-nav-item active href="#">ทุนวิจัย</b-nav-item>  
-        <b-nav-item active href="#">เอกสาร</b-nav-item>
-        <b-nav-item active href="#">คำถามทั่วไป</b-nav-item>
+        <b-navbar-nav >
+        <b-nav-item active href="/Research">ทุนวิจัย</b-nav-item>
+        <b-nav-item active href="/document">เอกสาร</b-nav-item>
+        <b-nav-item active href="/question">คำถามทั่วไป</b-nav-item>
       </b-navbar-nav>
       
       <!-- Right aligned nav items -->

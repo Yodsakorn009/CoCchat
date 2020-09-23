@@ -7,6 +7,7 @@ import { NavbarPlugin } from 'bootstrap-vue'
 Vue.use(NavbarPlugin)
 import { LayoutPlugin } from 'bootstrap-vue'
 Vue.use(LayoutPlugin)
+import router from './router'
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
@@ -17,5 +18,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.config.productionTip = false
 
 new Vue({
+  router,
   render: h => h(App)
 }).$mount('#Home')

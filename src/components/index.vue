@@ -1,10 +1,10 @@
 <template> 
 
-  <div class="home">
+  <div class="Home">
 <div>
   <b-navbar toggleable="lg" type="dark" variant="info">
     <div class="container">
-      <b-navbar-brand href="#">
+      <b-navbar-brand href="/">
       <img height="25px" src="https://www.computing.psu.ac.th/th/wp-content/uploads/2018/03/PSU_CoC_ENG.png">
     </b-navbar-brand>
     
@@ -13,9 +13,9 @@
     
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav >
-        <b-nav-item active href="#">ทุนวิจัย</b-nav-item>
-        <b-nav-item active href="#">เอกสาร</b-nav-item>
-        <b-nav-item active href="#">คำถามทั่วไป</b-nav-item>
+        <b-nav-item active href="/Research">ทุนวิจัย</b-nav-item>
+        <b-nav-item active href="/document">เอกสาร</b-nav-item>
+        <b-nav-item active href="/question">คำถามทั่วไป</b-nav-item>
       </b-navbar-nav>
       
       <!-- Right aligned nav items -->
@@ -52,7 +52,7 @@
     >
       <!-- Text slides with image -->
       <b-carousel-slide
-        caption="PSU"
+        caption="PSU PHUKET CAMPUS"
         text="Prince of Songkla University"
         img-src="https://www.psu.ac.th/sites/files/n7424_ft160603_01.png"
       ></b-carousel-slide>
@@ -71,24 +71,24 @@
      <h4>ทุนวิจัย</h4>
    <b-list-group style="max-width: 100%;">
      
-      <b-list-group-item class="d-flex align-items-center" href="#">
+      <b-list-group-item class="d-flex align-items-center" href="mainResearchfunds">
         <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
-        <span class="mr-auto" >BootstrapVue</span>
+        <span class="mr-auto" >ทุนวิจัย1</span>
         <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="#">
+        <b-list-group-item class="d-flex align-items-center" href="mainResearchfunds">
           <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
-        <span class="mr-auto" >BootstrapVue</span>
+        <span class="mr-auto" >ทุนวิจัย2</span>
         <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="#">
+        <b-list-group-item class="d-flex align-items-center" href="mainResearchfunds">
           <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
-        <span class="mr-auto" >BootstrapVue</span>
+        <span class="mr-auto" >ทุนวิจัย3</span>
         <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="#">
+        <b-list-group-item class="d-flex align-items-center" href="mainResearchfunds">
          <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png" >
-        <span class="mr-auto" >BootstrapVue</span>
+        <span class="mr-auto" >ทุนวิจัย4</span>
         <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
      
@@ -98,47 +98,47 @@
      <h4>เอกสาร</h4>
    <b-list-group style="max-width: 100%;">
      
-      <b-list-group-item class="d-flex align-items-center" href="#">
-      <img height="25px" src="https://img.icons8.com/ios/452/document.png" >
-        <span class="mr-auto" >BootstrapVue</span>
+       <b-list-group-item class="d-flex align-items-center" href="/maindocument">
+        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
+        <span class="mr-auto" >เอกสาร1</span>
+        <b-badge>12-2-2563</b-badge>
+      </b-list-group-item><b-list-group-item class="d-flex align-items-center" href="/maindocument">
+        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
+        <span class="mr-auto" >เอกสาร2</span>
         <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="#">
-       <img height="25px" src="https://img.icons8.com/ios/452/document.png"  >
-        <span class="mr-auto" >BootstrapVue</span>
+      <b-list-group-item class="d-flex align-items-center" href="/maindocument">
+        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
+        <span class="mr-auto" >เอกสาร3</span>
         <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="#">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png" >
-        <span class="mr-auto" >BootstrapVue</span>
+      <b-list-group-item class="d-flex align-items-center" href="/maindocument">
+        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
+        <span class="mr-auto" >เอกสาร4</span>
         <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="#">
-       <img height="25px" src="https://img.icons8.com/ios/452/document.png"  >
-        <span class="mr-auto" >BootstrapVue</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
+     
      
     </b-list-group>
    </b-container>
       <b-container class="mt-3 bv-example-row">
      <h4>คำถามทั่วไป</h4>
    <b-list-group style="max-width: 100%;">     
-      <b-list-group-item class="d-flex align-items-center" href="#">
+      <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
-        <span class="mr-auto" >BootstrapVue</span>       
+        <span class="mr-auto" >คำถามทั่วไป1</span>       
       </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="#">
+        <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png"  >
-        <span class="mr-auto" >BootstrapVue</span>
+        <span class="mr-auto" >คำถามทั่วไป2</span>
              </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="#">
+        <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
-        <span class="mr-auto" >BootstrapVue</span>       
+        <span class="mr-auto" >คำถามทั่วไป3</span>       
       </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="#">
+        <b-list-group-item class="d-flex align-items-center" href="/mainquestion">
         <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png"  >
-        <span class="mr-auto" >BootstrapVue</span>        
+        <span class="mr-auto" >คำถามทั่วไป4</span>        
       </b-list-group-item>
      
     </b-list-group>
@@ -155,11 +155,7 @@
 
 <script> 
 export default {
-    data() {
-      return {
-        value: ''
-      }
-    }
+   name : 'Home'
   }
 
 </script>
