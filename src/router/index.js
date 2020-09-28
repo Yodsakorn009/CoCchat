@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../components/index.vue'
-import research from '../components/Researchfunds.vue'
-import document from '../components/document.vue'
-import question from '../components/question.vue'
-import mainquestion from '../components/mainquestion.vue'
-import mainResearchfunds from '../components/mainResearchfunds.vue'
-import maindocument from '../components/maindocument.vue'
+import Home from '../views/index.vue'
+import research from '../views/Researchfunds.vue'
+import document from '../views/document.vue'
+import question from '../views/question.vue'
+import mainquestion from '../views/mainquestion.vue'
+import mainResearchfunds from '../views/mainResearchfunds.vue'
+import maindocument from '../views/maindocument.vue'
 
 Vue.use(VueRouter)
 
