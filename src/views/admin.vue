@@ -1,7 +1,7 @@
 <template> 
 
-  <div class="Home">
-    <div>
+  <div class="admin">
+<div>
   <b-navbar toggleable="lg" type="dark" variant="info">
     <div class="container">
       <b-navbar-brand href="/">
@@ -36,8 +36,6 @@
     </div>
   </b-navbar>
 </div>
-     <my-header></my-header>
-
  <div class="mt-3 container" >
     <b-carousel
       id="carousel-1"
@@ -146,12 +144,11 @@
     </b-list-group>
    </b-container>
    
- <my-footer></my-footer>
+ 
 </div>
 </template>
 
-<script>
-
+<script> 
 export default {
    name : 'Home'
   }
