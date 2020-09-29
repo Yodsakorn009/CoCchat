@@ -27,7 +27,7 @@
           <template v-slot:button-content>
             <em>Admin</em>
           </template>
-          <b-dropdown-item href="#">login</b-dropdown-item>
+          <b-dropdown-item href="/login">login</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>

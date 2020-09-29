@@ -7,6 +7,7 @@ import question from '../views/question.vue'
 import mainquestion from '../views/mainquestion.vue'
 import mainResearchfunds from '../views/mainResearchfunds.vue'
 import maindocument from '../views/maindocument.vue'
+import login from '../views/login.vue'
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,11 @@ const routes = [
       path :'/mainResearchfunds',
       name : 'mainResearchfunds',
       component:mainResearchfunds
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: login
   }
   
   

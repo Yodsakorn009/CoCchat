@@ -7,7 +7,7 @@ import { NavbarPlugin } from 'bootstrap-vue'
 Vue.use(NavbarPlugin)
 import { LayoutPlugin } from 'bootstrap-vue'
 Vue.use(LayoutPlugin)
-import router from './router'
+import router from './router/router'
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
