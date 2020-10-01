@@ -38,7 +38,7 @@
 </div>
 
    <b-container class="mt-3">
-     <h2>คำถามทั่วไป</h2>
+     <h2>เอกสารทั่วไป</h2>
      </b-container>
      
      <div class="text-center">

@@ -73,22 +73,22 @@
      <h4>ทุนวิจัย</h4>
    <b-list-group style="max-width: 100%;">
      
-      <b-list-group-item class="d-flex align-items-center" href="mainResearchfunds">
+      <b-list-group-item class="d-flex align-items-center" href="/mainResearchfunds">
         <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
         <span class="mr-auto" >ทุนวิจัย1</span>
         <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="mainResearchfunds">
+        <b-list-group-item class="d-flex align-items-center" href="/mainResearchfunds">
           <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
         <span class="mr-auto" >ทุนวิจัย2</span>
         <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="mainResearchfunds">
+        <b-list-group-item class="d-flex align-items-center" href="/mainResearchfunds">
           <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
         <span class="mr-auto" >ทุนวิจัย3</span>
         <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="mainResearchfunds">
+        <b-list-group-item class="d-flex align-items-center" href="/mainResearchfunds">
          <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png" >
         <span class="mr-auto" >ทุนวิจัย4</span>
         <b-badge>12-2-2563</b-badge>
