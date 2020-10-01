@@ -8,7 +8,7 @@
     </b-navbar-brand>
     
      <b-nav right>
-<b-button type="back" href="/admin" variant="danger">back</b-button>
+<b-button type="back" @click="OnBack"  variant="danger">back</b-button>
      </b-nav>
 
     
@@ -91,8 +91,8 @@
         this.$nextTick(() => {
           this.show = true
         })
-      },OnBAck(){
-
+      },OnBack(){
+         window.history.back();
       }
       
     }
