@@ -14,9 +14,11 @@ import adminres from '../views/Researchfunds-admin.vue'
 import adminqus from '../views/question-admin.vue'
 import editdetail from '../views/detailbar.vue'
 import questiondetail from '../views/questiondetail.vue'
-import addquestion from "../views/questionadd.vue";
-import documentdetail from "../views/documentdetail.vue";
-import documentadd from "../views/documentadd.vue";
+import addquestion from "../views/questionadd.vue"
+import documentdetail from "../views/documentdetail.vue"
+import documentadd from "../views/documentadd.vue"
+import researchfundsdetail from "../views/researchfundsdetail.vue"
+import researchfundsadd from "../views/researchfundsadd.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -109,7 +111,18 @@ const routes = [
   path: '/admin/documentadd',
   name : 'documentaddd',
   component : documentadd
+},
+{
+  path: '/admin/researchfundsdetail',
+  name : 'researchfundsdetail',
+  component : researchfundsdetail
+},
+{
+  path: '/admin/researchfundsadd',
+  name : 'researchfundsadd',
+  component : researchfundsadd
 }
+
 
   
   

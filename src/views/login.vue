@@ -3,7 +3,7 @@
       <div>
   <b-navbar toggleable="lg" type="dark" variant="info">
     <div class="container">
-      <b-navbar-brand href="/login">
+      <b-navbar-brand href="/">
       <img height="25px" src="https://www.computing.psu.ac.th/th/wp-content/uploads/2018/03/PSU_CoC_ENG.png">
     </b-navbar-brand>
     
