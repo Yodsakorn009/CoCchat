@@ -134,6 +134,12 @@ var researchRef = database.ref('/research')
      
 
       return {
+           text1: '',
+          text2: '',     
+        file: null,
+         file2: null,
+        week1: '',
+        week2: '',
         form: {
           text1: '',
           text2: '',     

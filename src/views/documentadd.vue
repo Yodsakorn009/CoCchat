@@ -110,6 +110,9 @@ var documentRef = database.ref('/document')
    export default {
     data() {
       return {
+        text1 : '',
+        text2 :'',
+        week1: ''
         
       }
     },

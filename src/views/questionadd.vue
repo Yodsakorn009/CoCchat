@@ -33,7 +33,7 @@
         <b-form-textarea
          v-model="detail"
           type="text"
-          
+          required
            rows="10"
      
           placeholder="Text Area (รายระเอียด)"
@@ -45,7 +45,7 @@
         <b-form-input
          v-model="web"
           type="text"
-         
+          required
           placeholder="web"
         ></b-form-input>
       </b-form-group>
@@ -68,10 +68,17 @@ var questionRef = database.ref('/question')
    export default {
     data() {
       return {
-         question : '',
+              question : '',
           detail: '',
-          web: '' 
-       }
+          web: ''    ,
+        form: {         
+          question : '',
+          detail: '',
+          web: ''           
+        },
+       
+        show: true
+      }
     },
     methods: {
     addquestion ( question,detail,web) {      
