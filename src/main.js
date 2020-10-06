@@ -9,6 +9,11 @@ import { LayoutPlugin } from 'bootstrap-vue'
 Vue.use(LayoutPlugin)
 import router from './router/router'
 
+import VueConfirmDialog from 'vue-confirm-dialog'
+ 
+Vue.use(VueConfirmDialog)
+Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
+
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin

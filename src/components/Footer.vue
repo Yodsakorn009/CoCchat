@@ -1,15 +1,31 @@
 <template> <div class="mt-3  bg-info text-white" >
-     <div class="text-center">
-    <mediam> วิทยาลัยการคอมพิวเตอร์มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต<br> 80 หมู่ 1 ถ.วิชิตสงคราม ต.กะทู้ อ.กะทู้ จ.ภูเก็ต 83120 <br>โทร 076-276-471 , 076-276-562 Fax 076-276-453<br> www.computing.psu.ac.th
-    </mediam>
+   
+     <div class="text-center" :key="key" v-for="(detailbar, key) in detailbars" >
+   {{detailbar.name}}<br>{{detailbar.address}}<br>{{detailbar.tel}}<br>{{detailbar.web}}
+    
 </div>
    </div> 
 </template>
 
 <script>
-   export default{
+ import firebase from "../components/firebase";
 
-   }
+var database = firebase.database()
+
+var detailbarRef = database.ref('/detailbar')
+
+   export default {
+    data() {
+      return {      
+         detailbars: {}    
+       
+      }
+    } , mounted () {
+    detailbarRef.on('value', (snapshot) => {
+      this.detailbars = snapshot.val()
+    })
+  }
+  }
 </script>
 
 <style>

@@ -19,42 +19,40 @@
 <div class="container mt-3">
     
 <h2>คำถาม</h2>
-<b-form class="mt-3" @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group
-        id="input-group-1"
-        label="Text1:"
-        label-for="input-1"
-        description=""
-      >
+<b-form class="mt-3"  @reset="onReset" v-if="show">
+      <b-form-group label="Text1:" >
         <b-form-input
-          id="input-1"
-          v-model="form.text1"
-          type="text"
-          required
-          placeholder="Enter Text"
+         v-model="question"
+         type="text"
+         required
+         placeholder="Text Area (รายระเอียด)"
+
         ></b-form-input>
       </b-form-group>
-       <b-form-group
-        id="input-group-2"
-        label="Text2:"
-        label-for="input-2"
-        description=""
-      >
+       <b-form-group label="Text2:" >
         <b-form-textarea
-          id="input-2"
-          v-model="form.text2"
+         v-model="detail"
           type="text"
           required
            rows="3"
       max-rows="6"
-          placeholder="Enter Text"
-        ></b-form-textarea>
+          placeholder="Text Area (รายระเอียด)"
+          
+        ></b-form-textarea>     
         
+      </b-form-group>
+      <b-form-group label="Text3:" >
+        <b-form-input
+         v-model="web"
+          type="text"
+          required
+          placeholder="web"
+        ></b-form-input>
       </b-form-group>
     
     
 
-      <b-button type="submit" variant="primary">Add</b-button>&nbsp;
+      <b-button  @click="addquestion(question,detail,web)" variant="primary">Add</b-button>&nbsp;
       <b-button type="reset" variant="danger">Reset</b-button>
 
     </b-form>
@@ -64,38 +62,47 @@
 </template>
 
 <script>
+import firebase from "../components/firebase";
+var database = firebase.database()
+var questionRef = database.ref('/question')
    export default {
     data() {
       return {
-        form: {
-          text1: 'คำถามทั่วไป',
-          text2: 'Text Area (รายระเอียด)'          
+        form: {         
+          question : '',
+          detail: '',
+          web: ''           
         },
        
         show: true
       }
     },
     methods: {
-      onSubmit(evt) {
+    addquestion ( question,detail,web) {      
+      let data = {
+        name: question,
+        detail: detail,
+        web : web
+      }
+      questionRef.push(data)
+      window.history.back();
+      
+    },onReset(evt) {
         evt.preventDefault()
-       window.location.href = "/admin"
-      },
-      onReset(evt) {
-        evt.preventDefault()
-        // Reset our form values
-        this.form.text1 = ''
-         this.form.text2 = ''
-         
-        // Trick to reset/clear native browser form validation state
-        this.show = false
+        this.question =''
+        this.detail =''
+        this.web =''
+            this.show = false
         this.$nextTick(() => {
           this.show = true
-        })
+        })  
       },OnBack(){
-         window.history.back();
+      window.history.back();
       }
-      
-    }
+
+  }
+  
+  
   }
 </script>
 

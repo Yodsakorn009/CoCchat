@@ -19,7 +19,7 @@
 <div class="container mt-3">
     
 <h2>เอกสาร</h2>
-<b-form class="mt-3" @submit="onSubmit" @reset="onReset" v-if="show">
+<b-form class="mt-3" @reset="onReset" >
       <b-form-group
         id="input-group-1"
         label="Text1:"
@@ -28,10 +28,10 @@
       >
         <b-form-input
           id="input-1"
-          v-model="form.text1"
+          v-model="text1"
           type="text"
           required
-          placeholder="Enter Text"
+          placeholder="ชื่อเอกสาร"
         ></b-form-input>
       </b-form-group>
        <b-form-group
@@ -42,12 +42,12 @@
       >
         <b-form-textarea
           id="input-2"
-          v-model="form.text2"
+          v-model="text2"
           type="text"
-          required
+          
            rows="3"
       max-rows="6"
-          placeholder="Enter Text"
+          placeholder="ข้อมูลเพิ่มเติม"
         ></b-form-textarea>
         
       </b-form-group>
@@ -59,10 +59,10 @@
       >
         <b-form-file
           id="input-3"
-          v-model="form.file"
+          v-model="file"
           :state="Boolean(file)"
           required
-          placeholder="Enter File"
+          placeholder="upload file"
         ></b-form-file>
         
       </b-form-group>
@@ -74,17 +74,27 @@
       >
         <b-form-file
           id="input-4"
-          v-model="form.file2"
+          v-model="file2"
           :state="Boolean(file2)"
          
-          placeholder="Enter File"
+          placeholder="upload photo"
         ></b-form-file>
+        
+      </b-form-group>
+      <b-form-group
+        id="input-data-1"
+        label="Data Start:"
+        label-for="input-data-1"
+        required
+        description=""
+      >
+        <b-form-datepicker  v-model="week1"  close-button reset-button  locale="en"></b-form-datepicker>
         
       </b-form-group>
     
 
         
-      <b-button type="submit" variant="primary">Add</b-button>&nbsp;
+      <b-button @click="adddocument( text1,text2,week1) " variant="primary">Add</b-button>&nbsp;
       <b-button type="reset" variant="warning">Reset</b-button>
 
     </b-form>
@@ -94,17 +104,13 @@
 </template>
 
 <script>
+import firebase from "../components/firebase";
+var database = firebase.database()
+var documentRef = database.ref('/document')
    export default {
     data() {
       return {
-        form: {
-          text1: 'ชื่อเอกสาร',
-          text2: 'Text Area (รายระเอียด)',     
-        file: null,
-         file2: null
-        },
-       
-        show: true
+        
       }
     },
     methods: {
@@ -112,22 +118,28 @@
         evt.preventDefault()
        window.location.href = "/admin"
       },
-      onReset(evt) {
-        evt.preventDefault()
+      onReset() {      
         // Reset our form values
-        this.form.text1 = ''
-         this.form.text2 = ''
-          this.form.file = ''
-           this.form.file2 = ''
+         this.text1 = ''
+         this.text2 = ''
+         this.file = ''
+         this.file2 = ''
          
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
+        
+  
       },OnBack(){
          window.history.back();
+      },adddocument( text1,text2,week1){      
+      let data = {
+        name: text1,
+        detail: text2,
+        week : week1
+     
       }
+      documentRef.push(data)
+      window.history.back();
+      
+    }
       
     }
   }

@@ -40,115 +40,16 @@
      <h2>เอกสาร <b-button type="" active href="/admin/documentadd" variant="success">Add</b-button></h2>
    <b-list-group style="max-width: 100%;">
      
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
+       <b-list-group style="max-width: 100%;">
+     
+       <b-list-group-item :key="key" v-for="(document, key) in documents" class="d-flex align-items-center" :href="'/admin/documentdetail/'+key">
         <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร1</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item><b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร2</span>
-        <b-badge>12-2-2563</b-badge>
+        <span class="mr-auto" >{{document.name}}</span>
+        <b-badge>{{document.week}}</b-badge>
       </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร3</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร4</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร5</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร6</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร7</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร8</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร9</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร10</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร11</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร12</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร13</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร14</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร15</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร16</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร17</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร18</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร19</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร20</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร21</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร22</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
+     
+     
+    </b-list-group>
     </b-list-group>
    </b-container>
    
@@ -159,13 +60,26 @@
 </template>
 
 <script> 
+import firebase from "../components/firebase";
+
+var database = firebase.database()
+
+var documentRef = database.ref('/document')
+
+
 export default {
     data() {
       return {
-        value: ''
+        documents: {}    
       }
-    }
+    },
+  mounted () {
+ 
+   documentRef.on('value', (snapshot) => {
+      this.documents = snapshot.val()
+    })
   }
+}
 
 </script>
 

@@ -43,18 +43,18 @@ const routes = [
       component:question
   },
   {
-      path :'/mainquestion',
+      path :'/mainquestion/:key',
       name : 'mainquestion',
       component:mainquestion
   }
   ,
   {
-      path :'/maindocument',
+      path :'/maindocument/:key',
       name : 'maindocument',
       component:maindocument
   },
   {
-      path :'/mainResearchfunds',
+      path :'/mainResearchfunds/:key',
       name : 'mainResearchfunds',
       component:mainResearchfunds
   },
@@ -91,7 +91,7 @@ const routes = [
       component : editdetail
   },
   {
-    path: '/admin/questiondetail',
+    path: '/admin/questiondetail/:key',
     name : 'questiondetail',
     component : questiondetail
 }
@@ -103,7 +103,7 @@ const routes = [
 }
 ,
   {
-    path: '/admin/documentdetail',
+    path: '/admin/documentdetail/:key',
     name : 'documentdetail',
     component : documentdetail
 },

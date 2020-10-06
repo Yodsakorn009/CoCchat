@@ -19,81 +19,94 @@
 <div class="container mt-3">
     
 <h2>คำถาม</h2>
-<b-form class="mt-3" @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group
-        id="input-group-1"
-        label="Text1:"
-        label-for="input-1"
-        description=""
-      >
+
+ <b-form class="mt-3" :key="key" v-for="(question, key) in questions">
+         
+      <b-form-group label="Text1:"  v-on=" show (key, question) " >
         <b-form-input
-          id="input-1"
-          v-model="form.text1"
-          type="text"
-          required
-          placeholder="Enter Text"
+      
+         v-model="quest"
+         type="text"
+         required
+         placeholder="คำถาม"
+
         ></b-form-input>
       </b-form-group>
-       <b-form-group
-        id="input-group-2"
-        label="Text2:"
-        label-for="input-2"
-        description=""
-      >
+       <b-form-group label="Text2:" >
         <b-form-textarea
-          id="input-2"
-          v-model="form.text2"
+         v-model="detail"
           type="text"
           required
            rows="3"
       max-rows="6"
-          placeholder="Enter Text"
-        ></b-form-textarea>
+          placeholder="Text Area (รายระเอียด)"
+          
+        ></b-form-textarea>     
+        
+      </b-form-group>
+      <b-form-group label="Text3:" >
+        <b-form-input
+         v-model="web"
+          type="text"
+          required
+          placeholder="web"
+        ></b-form-input>
       </b-form-group>
     
+    
 
-      <b-button type="submit" variant="primary">Submit</b-button>&nbsp;
-      <b-button type="reset" variant="danger">Reset</b-button>&nbsp;
-         <b-button type="reset" variant="danger">delete</b-button>
+      <b-button  @click=" updatequestion(key,quest,detail,web)" variant="primary">Update</b-button>&nbsp;
+      <b-button  @click="Delete(key)" variant="danger">Delete</b-button>
     </b-form>
+     
+     
+         
+    
+    
 </div>
 
   </div>
 </template>
 
 <script>
-   export default {
+ import firebase from '../components/firebase'
+var database = firebase.database()
+var questionRef = database.ref('/question')
+export default {
     data() {
+    
       return {
-        form: {
-          text1: 'คำถามทั่วไป',
-          text2: 'Text Area (รายระเอียด)'          
-        },
-       
-        show: true
+       questions: {}       
       }
     },
     methods: {
-      onSubmit(evt) {
-        evt.preventDefault()
-       window.location.href = "/admin"
-      },
-      onReset(evt) {
-        evt.preventDefault()
-        // Reset our form values
-        this.form.text1 = ''
-         this.form.text2 = ''
-         
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
-      },OnBack(){
-         window.history.back();
-      }
+    Delete(key){
+      questionRef.child(key).remove()
+      window.history.back();
+    },
+    show (key, question) {
+      this.quest = question.name
+      this.detail = question.detail
+      this.web = question.web
       
+          },
+     OnBack(){
+      window.history.back();
+      } ,
+      updatequestion(key,quest,detail,web){
+          questionRef.child(key).update({
+        name : quest,
+        detail : detail,
+        web : web       
+      })
+    window.history.back();
     }
+  },
+    mounted () {
+    questionRef.orderByKey().equalTo(this.$route.params.key).on('value', (snapshot) => {
+      this.questions = snapshot.val()
+    })
+  }
   }
 </script>
 

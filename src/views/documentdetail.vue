@@ -19,8 +19,8 @@
 <div class="container mt-3">
     
 <h2>เอกสาร</h2>
-<b-form class="mt-3" @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group
+<b-form class="mt-3" >
+      <b-form-group      
         id="input-group-1"
         label="Text1:"
         label-for="input-1"
@@ -28,10 +28,10 @@
       >
         <b-form-input
           id="input-1"
-          v-model="form.text1"
+          v-model="text1"
           type="text"
           required
-          placeholder="Enter Text"
+          placeholder="ชื่อเอกสาร"
         ></b-form-input>
       </b-form-group>
        <b-form-group
@@ -42,12 +42,12 @@
       >
         <b-form-textarea
           id="input-2"
-          v-model="form.text2"
+          v-model="text2"
           type="text"
-          required
+          
            rows="3"
       max-rows="6"
-          placeholder="Enter Text"
+          placeholder="ข้อมูลเพิ่มเติม"
         ></b-form-textarea>
         
       </b-form-group>
@@ -59,10 +59,10 @@
       >
         <b-form-file
           id="input-3"
-          v-model="form.file"
+          v-model="file"
           :state="Boolean(file)"
           required
-          placeholder="Enter File"
+          placeholder="upload file"
         ></b-form-file>
         
       </b-form-group>
@@ -74,17 +74,26 @@
       >
         <b-form-file
           id="input-4"
-          v-model="form.file2"
+          v-model="file2"
           :state="Boolean(file2)"
          
-          placeholder="Enter File"
+          placeholder="upload photo"
         ></b-form-file>
         
       </b-form-group>
-    
-
+       <b-form-group
+        id="input-data-1"
+        label="Data Start:"
+        label-for="input-data-1"
+        required
+        description=""
+      >
+        <b-form-datepicker  v-model="week1"  close-button reset-button  locale="en"></b-form-datepicker>
         
-      <b-button type="submit" variant="primary">Submit</b-button>&nbsp;
+      </b-form-group>
+     
+        
+      <b-button type="submit" variant="primary">Update</b-button>&nbsp;
       <b-button type="reset" variant="warning">Reset</b-button>&nbsp;
        <b-button type="reset" variant="danger">delete</b-button>
 
@@ -95,42 +104,41 @@
 </template>
 
 <script>
+import firebase from '../components/firebase'
+var database = firebase.database()
+var documentRef = database.ref('/document')
    export default {
     data() {
       return {
-        form: {
-          text1: 'ชื่อเอกสาร',
-          text2: 'Text Area (รายระเอียด)',     
-        file: null,
-         file2: null
-        },
-       
-        show: true
+         file:null,
+         file2:null
+         
+ 
       }
     },
     methods: {
-      onSubmit(evt) {
-        evt.preventDefault()
-       window.location.href = "/admin"
-      },
       onReset(evt) {
         evt.preventDefault()
         // Reset our form values
-        this.form.text1 = ''
-         this.form.text2 = ''
-          this.form.file = ''
-           this.form.file2 = ''
-         
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
+        this.text1 = ''
+         this.text2 = ''
+          this.file = ''
+           this.file2 = ''
       },OnBack(){
          window.history.back();
       }
+       ,show (key, document) {
+      this.text1 = document.name
+      this.text2 = document.detail
+      this.week = document.week
       
-    }
+          },
+    },
+    mounted () {
+    documentRef.orderByKey().equalTo(this.$route.params.key).on('value', (snapshot) => {
+      this.documents = snapshot.val()
+    })
+  }
   }
 </script>
 

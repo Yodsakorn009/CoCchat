@@ -40,11 +40,15 @@
    <b-container class="mt-3">
      <h2>คำถามทั่วไป</h2>
      </b-container>
-     <b-container class="mt-3">
-        <a href="#">เว็บไซต์ตัวอย่างการเขียนขอทุนวิจัย</a>
+     <b-container class="mt-3"  :key="key" v-for="(question, key) in questions">
+        <a>{{question.name}}</a>
+        <div class="container mt-3">
+            ข้อมูล<br> 
+            <a>{{question.detail}}</a>
+        </div>
         <div class="container mt-3">
             สำนักวิจัยและพัฒนา<br> 
-            <a href="#">https://rdo.psu.ac.th/th/index.php/faqs</a>
+            <a >{{question.web}}</a>
         </div>
      </b-container>
    
@@ -55,12 +59,20 @@
 </template>
 
 <script> 
+import firebase from '../components/firebase'
+var database = firebase.database()
+var questionRef = database.ref('/question')
 export default {
     data() {
       return {
-        value: ''
+       questions: {}
       }
-    }
+    },
+    mounted () {
+    questionRef.orderByKey().equalTo(this.$route.params.key).on('value', (snapshot) => {
+      this.questions = snapshot.val()
+    })
+  }
   }
 
 </script>

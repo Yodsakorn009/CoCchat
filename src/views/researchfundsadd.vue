@@ -28,7 +28,7 @@
       >
         <b-form-input
           id="input-1"
-          v-model="form.text1"
+          v-model="text1"
           type="text"
           required
           placeholder="ชื่อเอกสาร"
@@ -41,7 +41,7 @@
       
         description=""
       >
-        <b-form-datepicker  v-model="week1" :min="day1" :max="year1" locale="en"></b-form-datepicker>
+        <b-form-datepicker  v-model="week1" locale="en"></b-form-datepicker>
         
       </b-form-group>
        <b-form-group
@@ -51,7 +51,7 @@
       
         description=""
       >
-        <b-form-datepicker  v-model="week2" :min="day2" :max="year2" locale="en"></b-form-datepicker>
+        <b-form-datepicker  v-model="week2" locale="en"></b-form-datepicker>
         
       </b-form-group>
       <b-form-group
@@ -73,7 +73,7 @@
       >
         <b-form-textarea
           id="input-2"
-          v-model="form.text2"
+          v-model="text2"
           type="text"
           required
            rows="3"
@@ -90,7 +90,7 @@
       >
         <b-form-file
           id="input-3"
-          v-model="form.file"
+          v-model="file"
           :state="Boolean(file)"
           required
           placeholder="Enter File"
@@ -106,7 +106,7 @@
       >
         <b-form-file
           id="input-4"
-          v-model="form.file2"
+          v-model="file2"
           :state="Boolean(file2)"         
           placeholder="Enter File"
         ></b-form-file>
@@ -115,7 +115,7 @@
         
 
         
-      <b-button type="submit" variant="primary">Add</b-button>&nbsp;
+      <b-button @click="researchadd( text1,selected,text2,week1,week2)" variant="primary">Add</b-button>&nbsp;
       <b-button type="reset" variant="warning">Reset</b-button>&nbsp;
       
 
@@ -126,18 +126,12 @@
 </template>
 
 <script>
+import firebase from "../components/firebase";
+var database = firebase.database()
+var researchRef = database.ref('/research')
    export default {
     data() {
-         const now = new Date()
-      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-      // 15th two months prior
-      const minDate = new Date(today)
-      minDate.setMonth(minDate.getMonth() - 2)
-      minDate.setDate(15)
-      // 15th in two months
-      const maxDate = new Date(today)
-      maxDate.setMonth(maxDate.getMonth() + 2)
-      maxDate.setDate(15)
+     
 
       return {
         form: {
@@ -146,18 +140,15 @@
         file: null,
          file2: null,
         week1: '',
-        day1: minDate,
-        year1: maxDate,
-        week2: '',
-        day2: minDate,
-        year2: maxDate
+        week2: ''
+ 
         },       
         show: true,
         selected: null,
         options: [
           { value: null, text: 'เลือกประเภททุนวิจัย' },
           { value: 'ทุนภายในมหาวิทยาลัย', text: 'ทุนภายในมหาวิทยาลัย' },
-          { value: 'ทุนภายในคณะ', text: 'ทุนภายในคณะ' },
+          { value: 'ทุนภายในคณะวิทยาลัยการคอมพิวเตอร์', text: 'ทุนภายในคณะวิทยาลัยการคอมพิวเตอร์' },
           { value: 'ทุนภายนอกมหาวิยลัย', text: 'ทุนภายนอกมหาวิยลัย' },
        
         ]
@@ -189,7 +180,19 @@
         })
       },OnBack(){
          window.history.back();
+      },researchadd( text1,selected,text2,week1,week2){      
+      let data = {
+        name: text1,
+        week1 : week1,
+        wwek2: week2,
+        detail: text2,
+        category : selected
+     
       }
+     researchRef.push(data)
+      window.history.back();
+      
+    }
       
     }
   }

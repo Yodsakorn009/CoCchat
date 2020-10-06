@@ -71,25 +71,10 @@
      <h4>ทุนวิจัย <b-button type="" active href="/admin/researchfundsadd" variant="success">Add</b-button></h4>
    <b-list-group style="max-width: 100%;">
      
-      <b-list-group-item class="d-flex align-items-center" href="/admin/researchfundsdetail">
+      <b-list-group-item class="d-flex align-items-center" :key="key" v-for="(research, key) in researchs" href="/admin/researchfundsdetail">
         <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
-        <span class="mr-auto" >ทุนวิจัย1</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="/admin/researchfundsdetail">
-          <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
-        <span class="mr-auto" >ทุนวิจัย2</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="/admin/researchfundsdetail">
-          <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
-        <span class="mr-auto" >ทุนวิจัย3</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="/admin/researchfundsdetail">
-         <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png" >
-        <span class="mr-auto" >ทุนวิจัย4</span>
-        <b-badge>12-2-2563</b-badge>
+        <span class="mr-auto" >{{research.name}}</span>
+        <b-badge>{{research.week}}</b-badge>
       </b-list-group-item>
      
     </b-list-group>
@@ -98,24 +83,10 @@
      <h4>เอกสาร <b-button type="" active href="/admin/documentadd" variant="success">Add</b-button></h4>
    <b-list-group style="max-width: 100%;">
      
-       <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
+    <b-list-group-item  class="d-flex align-items-center" :key="key" v-for="(document, key) in documents" :href="'/admin/documentdetail/'+key">
         <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร1</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item><b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร2</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร3</span>
-        <b-badge>12-2-2563</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center" href="/admin/documentdetail">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
-        <span class="mr-auto" >เอกสาร4</span>
-        <b-badge>12-2-2563</b-badge>
+        <span class="mr-auto" >{{document.name}}</span>
+        <b-badge>{{document.week}}</b-badge>
       </b-list-group-item>
      
      
@@ -124,23 +95,10 @@
       <b-container class="mt-3 bv-example-row">
      <h4>คำถามทั่วไป <b-button type="" active href="/admin/addquestion" variant="success">Add</b-button></h4>
    <b-list-group style="max-width: 100%;">     
-      <b-list-group-item class="d-flex align-items-center" href="/admin/questiondetail">
+      <b-list-group-item class="d-flex align-items-center" :href="'/admin/questiondetail/'+key" :key="key" v-for="(question, key) in questions">
        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
-        <span class="mr-auto" >คำถามทั่วไป1</span>       
-      </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="/admin/questiondetail">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png"  >
-        <span class="mr-auto" >คำถามทั่วไป2</span>
-             </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="/admin/questiondetail">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
-        <span class="mr-auto" >คำถามทั่วไป3</span>       
-      </b-list-group-item>
-        <b-list-group-item class="d-flex align-items-center" href="/admin/questiondetail">
-        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png"  >
-        <span class="mr-auto" >คำถามทั่วไป4</span>        
-      </b-list-group-item>
-     
+        <span class="mr-auto" >{{question.name}}</span>       
+      </b-list-group-item>    
     </b-list-group>
    </b-container>
    <div class="container mt-3"> <center>
@@ -151,7 +109,32 @@
 </template>
 
 <script> 
+import firebase from "../components/firebase";
 
+var database = firebase.database()
+var documentRef = database.ref('/document')
+var questionRef = database.ref('/question')
+var researchRef = database.ref('/research')
+export default {
+ 
+  data () {
+    return {
+       questions: {},
+        documents: {},
+      researchs: {}     
+    }
+  },mounted () {
+    questionRef.on('value', (snapshot) => {
+      this.questions = snapshot.val()
+    }),
+   documentRef.on('value', (snapshot) => {
+      this.documents = snapshot.val()
+    }),
+      researchRef.on('value', (snapshot) => {
+      this.researchs = snapshot.val()
+    })
+  }
+}
 
 </script>
 

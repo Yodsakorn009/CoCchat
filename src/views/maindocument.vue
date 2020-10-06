@@ -40,9 +40,9 @@
    <b-container class="mt-3">
      <h2>เอกสารทั่วไป</h2>
      </b-container>
-     
+     <div :key="key" v-for="(document, key) in documents">
      <div class="text-center">
-         <h4>หนังสือขออนุมัติงบประมาณ</h4>
+         <h4>{{document.name}}</h4>
           <br>
           <img height="190px" src="https://assets-global.website-files.com/583347ca8f6c7ee058111b55/5afc770caa130421393fa412_google-doc-error-message.png">          
          
@@ -50,7 +50,13 @@
     <div class="container">
       คำอธิบายเบื้องต้น :
       <div class="container">
-    ขออนุมัติงบประมาณรายจ่ายประจำปีงบประมาณ พ.ศ. 2558 งบกลาง รายการเงินสำรองจ่ายเพื่อกรณีฉุกเฉินหรือจำเป็น เพื่อเป็นค่าใช้จ่าย ของมหาวิทยาลัย
+    {{document.detail}}
+    </div><br>
+    </div>
+    <div class="container">
+      เวลาที่อัพโหลดเอกสาร :
+      <div class="container">
+    {{document.week}}
     </div><br>
     </div>
      <div class="container">
@@ -59,7 +65,7 @@
     <a href="">หนังสือขออนุมัติงบประมาณ.PDF</a>
     </div>
     </div>
-     
+     </div>
    
  
 </div>
@@ -68,12 +74,21 @@
 </template>
 
 <script> 
+
+import firebase from '../components/firebase'
+var database = firebase.database()
+var documentRef = database.ref('/document')
 export default {
     data() {
       return {
-        value: ''
+       documents: {}
       }
-    }
+    },
+    mounted () {
+   documentRef.orderByKey().equalTo(this.$route.params.key).on('value', (snapshot) => {
+      this.documents = snapshot.val()
+    })
+  }
   }
 
 </script>
