@@ -41,7 +41,7 @@
       
         description=""
       >
-        <b-form-datepicker  v-model="week1" locale="en"></b-form-datepicker>
+        <b-form-datepicker  v-model="week1" close-button reset-button locale="en"></b-form-datepicker>
         
       </b-form-group>
        <b-form-group
@@ -51,7 +51,7 @@
       
         description=""
       >
-        <b-form-datepicker  v-model="week2" locale="en"></b-form-datepicker>
+        <b-form-datepicker  v-model="week2" close-button reset-button locale="en"></b-form-datepicker>
         
       </b-form-group>
       <b-form-group
