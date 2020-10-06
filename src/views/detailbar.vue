@@ -101,7 +101,7 @@ var detailbarRef = database.ref('/detailbar')
     data() {
       return {      
         
-       
+       detailbars :{}
        
       }
     },
