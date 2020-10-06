@@ -33,7 +33,7 @@
         <b-form-textarea
          v-model="detail"
           type="text"
-          required
+          
            rows="10"
      
           placeholder="Text Area (รายระเอียด)"
@@ -45,7 +45,7 @@
         <b-form-input
          v-model="web"
           type="text"
-          required
+         
           placeholder="web"
         ></b-form-input>
       </b-form-group>
