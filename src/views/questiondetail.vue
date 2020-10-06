@@ -37,8 +37,8 @@
          v-model="detail"
           type="text"
           required
-           rows="3"
-      max-rows="6"
+           rows="10"
+     
           placeholder="Text Area (รายระเอียด)"
           
         ></b-form-textarea>     
