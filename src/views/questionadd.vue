@@ -68,14 +68,10 @@ var questionRef = database.ref('/question')
    export default {
     data() {
       return {
-        form: {         
-          question : '',
+         question : '',
           detail: '',
-          web: ''           
-        },
-       
-        show: true
-      }
+          web: '' 
+       }
     },
     methods: {
     addquestion ( question,detail,web) {      
