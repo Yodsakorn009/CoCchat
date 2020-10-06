@@ -19,8 +19,9 @@
 <div class="container mt-3">
     
 <h2>เอกสาร</h2>
-<b-form class="mt-3" >
-      <b-form-group      
+<b-form class="mt-3" :key="key" v-for="(document, key) in documents">
+      <b-form-group 
+      v-on="show (key, document)"
         id="input-group-1"
         label="Text1:"
         label-for="input-1"
@@ -60,7 +61,7 @@
         <b-form-file
           id="input-3"
           v-model="file"
-          :state="Boolean(file)"
+        
           required
           placeholder="upload file"
         ></b-form-file>
@@ -75,7 +76,6 @@
         <b-form-file
           id="input-4"
           v-model="file2"
-          :state="Boolean(file2)"
          
           placeholder="upload photo"
         ></b-form-file>
@@ -93,9 +93,9 @@
       </b-form-group>
      
         
-      <b-button type="submit" variant="primary">Update</b-button>&nbsp;
+      <b-button @click="updatedocument(key,text1,text2,week1)" variant="primary">Update</b-button>&nbsp;
       <b-button type="reset" variant="warning">Reset</b-button>&nbsp;
-       <b-button type="reset" variant="danger">delete</b-button>
+       <b-button @click="Delete(key)" variant="danger">delete</b-button>
 
     </b-form>
 </div>
@@ -108,8 +108,10 @@ import firebase from '../components/firebase'
 var database = firebase.database()
 var documentRef = database.ref('/document')
    export default {
+    
     data() {
-      return {
+  
+      return {   documents :{},
          file:null,
          file2:null
          
@@ -124,15 +126,27 @@ var documentRef = database.ref('/document')
          this.text2 = ''
           this.file = ''
            this.file2 = ''
+           this.week1 = null
       },OnBack(){
          window.history.back();
       }
        ,show (key, document) {
       this.text1 = document.name
       this.text2 = document.detail
-      this.week = document.week
+     this.week1 = document.week 
       
-          },
+          },Delete(key){
+      documentRef.child(key).remove()
+      window.history.back();
+    },
+     updatedocument(key,text1,text2,week1){
+        documentRef.child(key).update({
+        name : text1,
+        detail : text2,
+        week : week1       
+      })
+    window.history.back();
+    }
     },
     mounted () {
     documentRef.orderByKey().equalTo(this.$route.params.key).on('value', (snapshot) => {
