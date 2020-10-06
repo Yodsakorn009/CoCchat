@@ -94,8 +94,8 @@
      
         
       <b-button @click="updatedocument(key,text1,text2,week1)" variant="primary">Update</b-button>&nbsp;
-      <b-button type="reset" variant="warning">Reset</b-button>&nbsp;
-       <b-button @click="Delete(key)" variant="danger">delete</b-button>
+      <b-button type="reset" variant="warning">Clean</b-button>&nbsp;
+       <b-button @click="Delete(key)" variant="danger">Delete</b-button>
 
     </b-form>
 </div>

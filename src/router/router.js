@@ -113,7 +113,7 @@ const routes = [
   component : documentadd
 },
 {
-  path: '/admin/researchfundsdetail',
+  path: '/admin/researchfundsdetail/:key',
   name : 'researchfundsdetail',
   component : researchfundsdetail
 },

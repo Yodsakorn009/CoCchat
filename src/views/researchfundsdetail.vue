@@ -19,8 +19,9 @@
 <div class="container mt-3">
     
 <h2>ทุนวิจัย</h2>
-<b-form class="mt-3" @submit="onSubmit" @reset="onReset" v-if="show">
+<b-form class="mt-3" :key="key" v-for="(research, key) in researchs">
       <b-form-group
+      v-on="show (key, research)"
         id="input-group-1"
         label="Text1:"
         label-for="input-1"
@@ -28,7 +29,7 @@
       >
         <b-form-input
           id="input-1"
-          v-model="form.text1"
+          v-model="text1"
           type="text"
           required
           placeholder="ชื่อเอกสาร"
@@ -41,7 +42,7 @@
       
         description=""
       >
-        <b-form-datepicker  v-model="week1" :min="day1" :max="year1" locale="en"></b-form-datepicker>
+        <b-form-datepicker  v-model="week1"  locale="en"></b-form-datepicker>
         
       </b-form-group>
        <b-form-group
@@ -51,7 +52,7 @@
       
         description=""
       >
-        <b-form-datepicker  v-model="week2" :min="day2" :max="year2" locale="en"></b-form-datepicker>
+        <b-form-datepicker  v-model="week2" locale="en"></b-form-datepicker>
         
       </b-form-group>
       <b-form-group
@@ -73,7 +74,7 @@
       >
         <b-form-textarea
           id="input-2"
-          v-model="form.text2"
+          v-model="text2"
           type="text"
           required
            rows="3"
@@ -90,7 +91,7 @@
       >
         <b-form-file
           id="input-3"
-          v-model="form.file"
+          v-model="file"
           :state="Boolean(file)"
           required
           placeholder="Enter File"
@@ -106,7 +107,7 @@
       >
         <b-form-file
           id="input-4"
-          v-model="form.file2"
+          v-model="file2"
           :state="Boolean(file2)"         
           placeholder="Enter File"
         ></b-form-file>
@@ -115,9 +116,9 @@
         
 
         
-      <b-button type="submit" variant="primary">Submit</b-button>&nbsp;
-      <b-button type="reset" variant="warning">Reset</b-button>&nbsp;
-       <b-button type="reset" variant="danger">delete</b-button>
+      <b-button @click=" updateresearch(key,text1,week1,week2,selected,text2)" variant="primary">Submit</b-button>&nbsp;
+      <b-button type="reset" variant="warning">Clean</b-button>&nbsp;
+       <b-button @click="Delete(key)" variant="danger">Delete</b-button>
 
     </b-form>
 </div>
@@ -126,38 +127,19 @@
 </template>
 
 <script>
+ import firebase from '../components/firebase'
+var database = firebase.database()
+var researchRef = database.ref('/research')
    export default {
     data() {
-         const now = new Date()
-      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-      // 15th two months prior
-      const minDate = new Date(today)
-      minDate.setMonth(minDate.getMonth() - 2)
-      minDate.setDate(15)
-      // 15th in two months
-      const maxDate = new Date(today)
-      maxDate.setMonth(maxDate.getMonth() + 2)
-      maxDate.setDate(15)
-
       return {
-        form: {
-          text1: '',
-          text2: '',     
-        file: null,
-         file2: null,
-        week1: '',
-        day1: minDate,
-        year1: maxDate,
-        week2: '',
-        day2: minDate,
-        year2: maxDate
-        },       
-        show: true,
+         researchs: {} ,       
+    
         selected: null,
         options: [
           { value: null, text: 'เลือกประเภททุนวิจัย' },
           { value: 'ทุนภายในมหาวิทยาลัย', text: 'ทุนภายในมหาวิทยาลัย' },
-          { value: 'ทุนภายในคณะ', text: 'ทุนภายในคณะ' },
+          { value: 'ทุนภายในคณะวิทยาลัยการคอมพิวเตอร์', text: 'ทุนภายในคณะวิทยาลัยการคอมพิวเตอร์' },
           { value: 'ทุนภายนอกมหาวิยลัย', text: 'ทุนภายนอกมหาวิยลัย' },
        
         ]
@@ -171,27 +153,46 @@
       onReset(evt) {
         evt.preventDefault()
         // Reset our form values
-        this.form.text1 = ''
-         this.form.text2 = ''
-         this.form.file = ''
-         this.form.file2 = ''
+        this.text1 = ''
+         this.text2 = ''
+         this.file = ''
+         this.file2 = ''
          this.week1 = ''
-         this.day1 = ''
-         this.year1 = ''      
+  
           this.week2 = ''
-         this.day2 = ''
-         this.year2= ''  
+       
          this.selected = null     
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
+    
       },OnBack(){
          window.history.back();
-      }
-      
+      },Delete(key){
+     researchRef.child(key).remove()
+      window.history.back();
+    },
+    show (key, research) {
+      this.text1 = research.name
+      this.week1 = research.week1
+      this.week2 = research.wwek2
+      this.selected = research.category
+      this.text2 = research.detail
+          },
+      updateresearch(key,text1,week1,week2,selected,text2){
+          researchRef.child(key).update({
+        name : text1,
+        detail : text2,
+        week1 : week1  ,
+         wwek2 : week2  ,
+          category : selected       
+      })
+    window.history.back();
     }
+      
+    },
+    mounted () {
+    researchRef.orderByKey().equalTo(this.$route.params.key).on('value', (snapshot) => {
+      this.researchs = snapshot.val()
+    })
+  }
   }
 </script>
 

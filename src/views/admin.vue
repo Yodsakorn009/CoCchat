@@ -71,10 +71,10 @@
      <h4>ทุนวิจัย <b-button type="" active href="/admin/researchfundsadd" variant="success">Add</b-button></h4>
    <b-list-group style="max-width: 100%;">
      
-      <b-list-group-item class="d-flex align-items-center" :key="key" v-for="(research, key) in researchs" href="/admin/researchfundsdetail">
+      <b-list-group-item class="d-flex align-items-center" :key="key" v-for="(research, key) in researchs" :href="'/admin/researchfundsdetail/'+key">
         <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
         <span class="mr-auto" >{{research.name}}</span>
-        <b-badge>{{research.week}}</b-badge>
+        <b-badge>{{research.week1}}</b-badge>
       </b-list-group-item>
      
     </b-list-group>
