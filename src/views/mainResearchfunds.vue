@@ -55,8 +55,8 @@
     วันหมดเขตของโครงการ : {{research.week2}}
     </div>
      <div class="container">
-    เนื้อความ :
-{{research.detail}} 
+    เนื้อความ :<p style="white-space: pre-line;">{{research.detail}} </p>
+
 
     </div>
      <div class="container">

@@ -49,8 +49,8 @@
     </div><br>
     <div class="container">
       คำอธิบายเบื้องต้น :
-      <div class="container">
-    {{document.detail}}
+      <div class="container">   เนื้อความ :<p style="white-space: pre-line;">{{document.detail}}</p>
+    
     </div><br>
     </div>
     <div class="container">
