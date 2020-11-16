@@ -236,10 +236,7 @@ var researchRef = database.ref('/research')
         this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
       }, error=>{console.log(error.message)},
       ()=>{this.uploadValue=100;
-       storageRef.snapshot.ref.getDownloadURL().then((url)=>{
-          this.picture =url;
-          console.log(url)
-        });
+        window.history.back();
       }
       );
         
