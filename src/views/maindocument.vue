@@ -48,9 +48,10 @@
          
     </div><br>
     <div class="container">
-      คำอธิบายเบื้องต้น :
-      <div class="container">   เนื้อความ :<p style="white-space: pre-line;">{{document.detail}}</p>
-    
+      คำอธิบายเบื้องต้น : 
+      <div class="container">   เนื้อความ :
+         <div class="container"><p style="white-space: pre-line;">{{document.detail}}</p>
+         </div>
     </div><br>
     </div>
     <div class="container">
@@ -62,7 +63,7 @@
      <div class="container">
       ดาวน์โหลดไฟล์ที่เกี่ยวข้อง :
       <div class="text-center">
-    <a href="">หนังสือขออนุมัติงบประมาณ.PDF</a>
+    <a href="">{{document.docname}}</a>
     </div>
     </div>
      </div>

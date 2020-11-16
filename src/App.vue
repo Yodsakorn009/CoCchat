@@ -1,7 +1,7 @@
-<template>  <div>
+<template>  <div class="wrapper">
  
-    <router-view/>  
-    <my-footer></my-footer>
+    <router-view class="body"/>  
+    <my-footer class="footer"></my-footer>
     </div>
 </template>
 
@@ -14,6 +14,7 @@ import Footer from './components/Footer'
      }
   }
 </script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -34,5 +35,35 @@ import Footer from './components/Footer'
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}.wrapper {
+   display: block;
+   min-height: 100%; /* real browsers */
+   height: auto !important; /* real browsers */
+   height: 100%; /* IE6 bug */
+   margin-bottom: -20px; /* กำหนด margin-bottom ให้ติดลบเท่ากับความสูงของ footer */
 }
+.body{
+   
+       bottom:0;
+       left:0;
+   width: 100%; 
+    min-height:728px;  
+       max-height: autopx;
+
+ 
+}
+.footer {
+   
+       bottom:0;
+       left:0;
+   width: 100%;
+   height:110px;
+   padding: 20px 0;
+   padding: 15px 35px;
+   text-align: center;
+   color: #ffffff;
+ 
+ 
+}
+
 </style>

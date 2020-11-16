@@ -41,11 +41,11 @@
      <h2>คำถามทั่วไป</h2>
      </b-container>
      <b-container class="mt-3"  :key="key" v-for="(question, key) in questions">
-        <pre>{{question.name}}</pre>
+        <p>{{question.name}}</p>
         <div class="container mt-3">
-            ข้อมูล<br> 
+            ข้อมูล<br> <div class="container">
             <p style="white-space: pre-line;">{{question.detail}}</p>
-          
+          </div>
         </div>
         <div class="container mt-3">
             สำนักวิจัยและพัฒนา<br> 
@@ -96,4 +96,5 @@ li {
 a {
   color: #42b983;
 }
+
 </style>

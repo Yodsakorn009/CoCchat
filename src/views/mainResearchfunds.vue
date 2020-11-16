@@ -43,20 +43,27 @@
      <div class="text-center">
          <h4>{{research.name}}</h4>
          <br>
-          <img height="190px" src="https://assets-global.website-files.com/583347ca8f6c7ee058111b55/5afc770caa130421393fa412_google-doc-error-message.png">
+          <img height="190px" weight=auto src="https://assets-global.website-files.com/583347ca8f6c7ee058111b55/5afc770caa130421393fa412_google-doc-error-message.png">
     </div><br>
     <div class="container">
-    ดาวน์โหลดไฟล์ที่เกี่ยวข้อง : <a href="#"> ทุนวิจัยมหาวิทยาลัย.PDF </a>
+    ดาวน์โหลดไฟล์ที่เกี่ยวข้อง :  <a href="">{{research.docname}}</a>
     </div>
      <div class="container">
-   วันที่ประกาศ : {{research.week1}}
+   วันที่ประกาศ : {{research.firstweek}}
     </div>
      <div class="container">
-    วันหมดเขตของโครงการ : {{research.week2}}
+    วันหมดเขตของโครงการ : {{research.endweek}}
     </div>
      <div class="container">
-    เนื้อความ :<p style="white-space: pre-line;">{{research.detail}} </p>
+       
+    เนื้อความ :  <div class="container"><p style="white-space: pre-line;">{{research.detail}} </p>
 
+</div>
+    </div>
+     <div class="container">
+    การสนับสนุน :
+    <div class="container"><p style="white-space: pre-line;">{{research.value}} </p>
+</div>
 
     </div>
      <div class="container">
@@ -78,6 +85,7 @@
 import firebase from '../components/firebase'
 var database = firebase.database()
 var researchRef = database.ref('/research')
+
 export default {
     data() {
       return {
@@ -88,7 +96,10 @@ export default {
   researchRef.orderByKey().equalTo(this.$route.params.key).on('value', (snapshot) => {
       this.researchs = snapshot.val()
     })
+  
+  
   }
+  
   }
 
 </script>

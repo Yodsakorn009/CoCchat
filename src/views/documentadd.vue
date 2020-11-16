@@ -22,7 +22,7 @@
 <b-form class="mt-3" @reset="onReset" >
       <b-form-group
         id="input-group-1"
-        label="Text1:"
+        label="ชื่อเอกสาร:"
         label-for="input-1"
         description=""
       >
@@ -36,7 +36,7 @@
       </b-form-group>
        <b-form-group
         id="input-group-2"
-        label="Text2:"
+        label="ข้อมูล:"
         label-for="input-2"
         description=""
       >
@@ -52,32 +52,36 @@
         
       </b-form-group>
            <b-form-group
-        id="input-group-3"
+        id="input-group-4"
         label="File:"
-        label-for="input-3"
-        description=""
+        label-for="input-4"
+         description="* 
+เอกสาารต่างๆสามารถอัพโหลดได้โดยเป็น (PDF)"
       >
         <b-form-file
-          id="input-3"
+          id="input-4"
           v-model="file"
           :state="Boolean(file)"
           required
+           
           placeholder="upload file"
+         accept=".pdf"
         ></b-form-file>
         
       </b-form-group>
         <b-form-group
-        id="input-group-4"
+        id="input-group-5"
         label="Photo:"
-        label-for="input-4"
-        description=""
+        label-for="input-5"
+           description="* ไม่จำเป็นต้องเพิ่มไฟล์รูปภาพหากไม่มี"
       >
         <b-form-file
-          id="input-4"
+          id="input-5"
           v-model="file2"
-          :state="Boolean(file2)"
-         
-          placeholder="upload photo"
+          :state="Boolean(file2)"       
+       
+          placeholder="upload photo" 
+           accept="image/*"
         ></b-form-file>
         
       </b-form-group>
@@ -85,16 +89,19 @@
         id="input-data-1"
         label="Data Start:"
         label-for="input-data-1"
-        required
-        description=""
+        
+        
       >
         <b-form-datepicker  v-model="week1"  close-button reset-button  locale="en"></b-form-datepicker>
         
       </b-form-group>
-    
+    <div>
+      <p>Progress:  {{uploadValue.toFixed()+"%"}}
+      <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
+    </div>
 
         
-      <b-button @click="adddocument( text1,text2,week1) " variant="primary">Add</b-button>&nbsp;
+      <b-button @click="adddocument( text1,text2,week1,file,file2) " variant="primary">Add</b-button>&nbsp;      
       <b-button type="reset" variant="warning">Reset</b-button>
 
     </b-form>
@@ -109,10 +116,12 @@ var database = firebase.database()
 var documentRef = database.ref('/document')
    export default {
     data() {
-      return {
+      return { uploadValue: 0,
         text1 : '',
         text2 :'',
-        week1: ''
+        week1: '',
+        file: null,
+        file2: null
         
       }
     },
@@ -125,24 +134,32 @@ var documentRef = database.ref('/document')
         // Reset our form values
          this.text1 = ''
          this.text2 = ''
-         this.file = ''
-         this.file2 = ''
+         this.file = null
+         this.file2 = null
+         this.week1 = null
          
         
   
       },OnBack(){
          window.history.back();
-      },adddocument( text1,text2,week1){      
+      },adddocument(text1,text2,week1,file,file2){      
       let data = {
         name: text1,
         detail: text2,
-        week : week1
-     
+        week : week1,
+        docname : file.name,
+        photoname : file2.name
+         } 
+         documentRef.push(data);           
+         const storageRef=(firebase.storage().ref(`document/document/${file.name}`).put(file),firebase.storage().ref(`document/photo/${file2.name}`).put(file2)); 
+         storageRef.on(`state_changed`,snapshot=>{
+        this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+      }, error=>{console.log(error.message)},
+      ()=>{this.uploadValue=100;
+         window.history.back();
       }
-      documentRef.push(data)
-      window.history.back();
-      
-    }
+      );
+        }
       
     }
   }

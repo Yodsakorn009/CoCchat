@@ -23,7 +23,7 @@
       <b-form-group
       v-on="show (key, research)"
         id="input-group-1"
-        label="Text1:"
+        label="ชื่อ:"
         label-for="input-1"
         description=""
       >
@@ -42,7 +42,7 @@
       
         description=""
       >
-        <b-form-datepicker  v-model="week1"  locale="en"></b-form-datepicker>
+        <b-form-datepicker  v-model="week1" close-button  locale="en"></b-form-datepicker>
         
       </b-form-group>
        <b-form-group
@@ -52,7 +52,7 @@
       
         description=""
       >
-        <b-form-datepicker  v-model="week2" locale="en"></b-form-datepicker>
+        <b-form-datepicker  v-model="week2" close-button  locale="en"></b-form-datepicker>
         
       </b-form-group>
       <b-form-group
@@ -68,7 +68,7 @@
     
        <b-form-group
         id="input-group-2"
-        label="Text2:"
+        label="ข้อมูล:"
         label-for="input-2"
         description=""
       >
@@ -83,33 +83,53 @@
         ></b-form-textarea>
         
       </b-form-group>
-           <b-form-group
-        id="input-group-3"
-        label="File:"
+             
+       <b-form-group
+        id="input-group-2"
+        label="การสนับสนุน:"
         label-for="input-3"
-        description="*เอกสาารต่างๆสามารถอัพโหลดได้โดยเป็น (PDF)"
+        description=""
       >
-        <b-form-file
+        <b-form-textarea
           id="input-3"
-          v-model="file"
-          :state="Boolean(file)"
+          v-model="tetx3"
+          type="text"
           required
-          placeholder="Enter File"
-        ></b-form-file>
+           rows="2"
+      max-rows="6"
+          placeholder="Text Area (รายระเอียด)"
+        ></b-form-textarea>
         
       </b-form-group>
-        <b-form-group
+            <b-form-group
         id="input-group-4"
-        label="Photo:"
+        label="File:"
         label-for="input-4"
-        description="* ไม่จำเป็นต้องเพิ่มไฟล์รูปภาพหากไม่มี
+        description="* 
 เอกสาารต่างๆสามารถอัพโหลดได้โดยเป็น (PDF)"
       >
         <b-form-file
           id="input-4"
+          v-model="file1"
+          :state="Boolean(file1)"         
+          placeholder="Enter File"
+          accept=".pdf"
+        ></b-form-file>
+        
+      </b-form-group>
+        <b-form-group
+        id="input-group-5"
+        label="Photo:"
+        label-for="input-5"
+        description="* ไม่จำเป็นต้องเพิ่มไฟล์รูปภาพหากไม่มี
+เอกสาารต่างๆสามารถอัพโหลดได้โดยเป็น (PDF)"
+      >
+        <b-form-file
+          id="input-5"
           v-model="file2"
           :state="Boolean(file2)"         
           placeholder="Enter File"
+          accept="image/*"
         ></b-form-file>
         
       </b-form-group>
@@ -117,7 +137,7 @@
 
         
       <b-button @click=" updateresearch(key,text1,week1,week2,selected,text2)" variant="primary">Submit</b-button>&nbsp;
-      <b-button type="reset" variant="warning">Clean</b-button>&nbsp;
+   
        <b-button @click="Delete(key)" variant="danger">Delete</b-button>
 
     </b-form>
@@ -171,17 +191,18 @@ var researchRef = database.ref('/research')
     },
     show (key, research) {
       this.text1 = research.name
-      this.week1 = research.week1
-      this.week2 = research.wwek2
+      this.week1 = research.firstweek
+      this.week2 = research.endweek
       this.selected = research.category
-      this.text2 = research.detail
+      this.text2 = research.detail,
+      this.tetx3 = research.value
           },
       updateresearch(key,text1,week1,week2,selected,text2){
           researchRef.child(key).update({
         name : text1,
         detail : text2,
-        week1 : week1  ,
-         wwek2 : week2  ,
+        firstweek : week1  ,
+         endweek : week2  ,
           category : selected       
       })
     window.history.back();

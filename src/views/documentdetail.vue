@@ -81,6 +81,7 @@
         ></b-form-file>
         
       </b-form-group>
+      <a :href="picture">sdadasd</a>
        <b-form-group
         id="input-data-1"
         label="Data Start:"
@@ -107,6 +108,7 @@
 import firebase from '../components/firebase'
 var database = firebase.database()
 var documentRef = database.ref('/document')
+
    export default {
     
     data() {
@@ -134,6 +136,7 @@ var documentRef = database.ref('/document')
       this.text1 = document.name
       this.text2 = document.detail
      this.week1 = document.week 
+     
       
           },Delete(key){
       documentRef.child(key).remove()
@@ -152,6 +155,8 @@ var documentRef = database.ref('/document')
     documentRef.orderByKey().equalTo(this.$route.params.key).on('value', (snapshot) => {
       this.documents = snapshot.val()
     })
+    
+ 
   }
   }
 </script>

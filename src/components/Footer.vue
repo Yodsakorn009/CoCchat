@@ -8,6 +8,29 @@
 </template>
 
 <script>
+// import query from './mysql';
+
+
+// export default {
+//   data() {
+//     return {
+//       data: [{
+//         name: '',
+//         address: '',
+//         tel: '',
+//         web: ''
+//       }]
+//     }
+//   },
+//   mounted() {
+//     console.log('fetch data')
+//     query(`SELECT * FROM detailbar`).then(result => {
+//       console.log('result', result)
+
+//       this.data = result
+//     })
+//   }
+// }
  import firebase from "../components/firebase";
 
 var database = firebase.database()
