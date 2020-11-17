@@ -63,7 +63,7 @@
      <div class="container">
       ดาวน์โหลดไฟล์ที่เกี่ยวข้อง :
       <div class="text-center">
-    <a href="">{{document.docname}}</a>
+    <a @click="h(document)" style="color:blue">{{document.docname}}</a>
     </div>
     </div>
      </div>
@@ -84,6 +84,17 @@ export default {
       return {
        documents: {}
       }
+    },
+    methods: {
+         
+    h(research) {  const storage = firebase.storage();
+         storage.ref(`document/document/${research.docname}`).getDownloadURL()
+      .then((url) => {
+         console.log(url);
+           window.location.href = url
+         })
+ 
+          }
     },
     mounted () {
    documentRef.orderByKey().equalTo(this.$route.params.key).on('value', (snapshot) => {
