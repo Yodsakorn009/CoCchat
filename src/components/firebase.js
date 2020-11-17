@@ -1,14 +1,14 @@
 import * as firebase from 'firebase'
 
-var config = {
-  apiKey: 'AIzaSyDsB-4sF2ykC6-iRpNg13jVPeiAWShowrw',
-  authDomain: 'chatbotcoc.firebaseapp.com',
-  databaseURL: 'https://chatbotcoc.firebaseio.com',
-  projectId: 'chatbotcoc',
-  storageBucket: 'chatbotcoc.appspot.com',
-  messagingSenderId: '881442453519',
-  appId: '1:881442453519:web:6ca8b809d88e557615cb7a',
-  measurementId: 'G-KH6375N5ND'
+var config = { 
+    apiKey: 'AIzaSyCmxv3_st5huNR3YJZYD7SeRT3gdcdtrUA',
+    authDomain: 'chatbot01-hucg.firebaseapp.com',
+    databaseURL: 'https://chatbot01-hucg.firebaseio.com',
+    projectId: 'chatbot01-hucg',
+    storageBucket: 'chatbot01-hucg.appspot.com',
+    messagingSenderId: '497132394892',
+    appId: '1:497132394892:web:8aa313b975df8839291ea9',
+    measurementId: 'G-GR10QNQY42'
 }
 
 firebase.initializeApp(config)

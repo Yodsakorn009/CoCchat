@@ -45,8 +45,8 @@
          <br>
           <img height="190px" weight=auto src="https://assets-global.website-files.com/583347ca8f6c7ee058111b55/5afc770caa130421393fa412_google-doc-error-message.png">
     </div><br>
-    <div class="container">
-    ดาวน์โหลดไฟล์ที่เกี่ยวข้อง :  <a href="">{{research.docname}}</a>
+    <div class="container">     
+    ดาวน์โหลดไฟล์ที่เกี่ยวข้อง :  <a @click="h(research)" style="color:blue">{{research.docname}}</a>
     </div>
      <div class="container">
    วันที่ประกาศ : {{research.firstweek}}
@@ -71,7 +71,7 @@
 {{research.category}} 
 
     </div>
- </b-container>
+ </b-container>ผ
  
    
    
@@ -92,10 +92,25 @@ export default {
        researchs: {}
       }
     },
+    methods: {
+         
+    h(research) {  const storage = firebase.storage();
+         storage.ref(`research/document/${research.docname}`).getDownloadURL()
+      .then((url) => {
+         console.log(url);
+           window.location.href = url
+         })
+ 
+          }
+    },
+    
     mounted () {
+   
   researchRef.orderByKey().equalTo(this.$route.params.key).on('value', (snapshot) => {
       this.researchs = snapshot.val()
     })
+   
+   
   
   
   }

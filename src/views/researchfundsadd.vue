@@ -115,6 +115,7 @@
           :state="Boolean(file1)"         
           placeholder="Enter File"
           accept=".pdf"
+          required
         ></b-form-file>
         
       </b-form-group>
@@ -122,7 +123,7 @@
         id="input-group-5"
         label="Photo:"
         label-for="input-5"
-        description="* ไม่จำเป็นต้องเพิ่มไฟล์รูปภาพหากไม่มี
+        description="* จำเป็นต้องเพิ่มไฟล์รูปภาพ
 "
       >
         <b-form-file
@@ -131,6 +132,7 @@
           :state="Boolean(file2)"         
           placeholder="Enter File"
           accept="image/*"
+          required
         ></b-form-file>
         
       </b-form-group>
@@ -139,7 +141,7 @@
       <p>Progress:  {{uploadValue.toFixed()+"%"}}
       <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
     </div>
-  <a :href="picture">test</a>        <br>
+ 
       <b-button @click="researchadd( text1,selected,text2,week1,week2,text3,file1,file2)" variant="primary">Add</b-button>&nbsp;
       <b-button type="reset" variant="warning">Reset</b-button>&nbsp;
       
@@ -185,7 +187,7 @@ var researchRef = database.ref('/research')
           { value: null, text: 'เลือกประเภททุนวิจัย' },
           { value: 'ทุนภายในมหาวิทยาลัย', text: 'ทุนภายในมหาวิทยาลัย' },
           { value: 'ทุนภายในคณะวิทยาลัยการคอมพิวเตอร์', text: 'ทุนภายในคณะวิทยาลัยการคอมพิวเตอร์' },
-          { value: 'ทุนภายนอกมหาวิยลัย', text: 'ทุนภายนอกมหาวิยลัย' },
+          { value: 'ทุนภายนอกมหาวิทยาลัย', text: 'ทุนภายนอกมหาวิทยาลัย' },
        
         ]
       }
@@ -218,8 +220,7 @@ var researchRef = database.ref('/research')
       },OnBack(){
          window.history.back();
       },researchadd( text1,selected,text2,week1,week2,text3,file1,file2){   
-        this.picture=null;
-      let data = {
+        let data = {
         name: text1,
         firstweek : week1,
         endweek: week2,
@@ -230,12 +231,14 @@ var researchRef = database.ref('/research')
         photoname : file2.name
      
       }
+     
         researchRef.push(data)
         const storageRef=(firebase.storage().ref(`research/document/${file1.name}`).put(file1),firebase.storage().ref(`research/photo/${file2.name}`).put(file2)); 
         storageRef.on(`state_changed`,snapshot=>{
         this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
       }, error=>{console.log(error.message)},
       ()=>{this.uploadValue=100;
+      
         window.history.back();
       }
       );

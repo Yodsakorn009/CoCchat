@@ -73,13 +73,13 @@
         id="input-group-5"
         label="Photo:"
         label-for="input-5"
-           description="* ไม่จำเป็นต้องเพิ่มไฟล์รูปภาพหากไม่มี"
+           description="* จำเป็นต้องเพิ่มไฟล์รูปภาพ"
       >
         <b-form-file
           id="input-5"
           v-model="file2"
           :state="Boolean(file2)"       
-       
+       required
           placeholder="upload photo" 
            accept="image/*"
         ></b-form-file>
