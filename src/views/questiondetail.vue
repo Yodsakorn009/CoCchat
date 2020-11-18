@@ -22,7 +22,7 @@
 
  <b-form class="mt-3" :key="key" v-for="(question, key) in questions">
          
-      <b-form-group label="Text1:"  v-on=" show (key, question) " >
+      <b-form-group label="ชื่อคำถาม:"  v-on=" show (key, question) " >
         <b-form-input
       
          v-model="quest"
@@ -32,7 +32,7 @@
 
         ></b-form-input>
       </b-form-group>
-       <b-form-group label="Text2:" >
+       <b-form-group label="ข้อมูลคำถาม:" >
         <b-form-textarea
          v-model="detail"
           type="text"
@@ -44,7 +44,7 @@
         ></b-form-textarea>     
         
       </b-form-group>
-      <b-form-group label="Text3:" >
+      <b-form-group label="Website:" >
         <b-form-input
          v-model="web"
           type="text"

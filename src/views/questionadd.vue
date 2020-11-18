@@ -20,28 +20,29 @@
     
 <h2>คำถาม</h2>
 <b-form class="mt-3"  @reset="onReset" v-if="show">
-      <b-form-group label="Text1:" >
+      <b-form-group 
+      label="ชื่อคำถาม:" >
         <b-form-input
          v-model="question"
          type="text"
          required
-         placeholder="Text Area (รายระเอียด)"
+         placeholder="ชื่อคำถาม"
 
         ></b-form-input>
       </b-form-group>
-       <b-form-group label="Text2:" >
+       <b-form-group label="ข้อมูล:" >
         <b-form-textarea
          v-model="detail"
           type="text"
           required
            rows="10"
      
-          placeholder="Text Area (รายระเอียด)"
+          placeholder="ข้อมูลคำถาม"
           
         ></b-form-textarea>     
         
       </b-form-group>
-      <b-form-group label="Text3:" >
+      <b-form-group label="Website:" >
         <b-form-input
          v-model="web"
           type="text"

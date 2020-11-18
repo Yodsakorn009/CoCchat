@@ -37,7 +37,7 @@
       </b-form-group>
        <b-form-group
         id="input-data-1"
-        label="Data Start:"
+        label="วันเริ่มประกาศทุน:"
         label-for="input-data-1"
       
         description=""
@@ -47,7 +47,7 @@
       </b-form-group>
        <b-form-group
         id="input-data-2"
-        label="Data End:"
+        label="วันสิ้นสุดทุน:"
         label-for="input-data-2"
       
         description=""
@@ -79,7 +79,7 @@
           required
            rows="3"
       max-rows="6"
-          placeholder="Text Area (รายระเอียด)"
+          placeholder="ข้อมูลของทุนแบบคราวๆ"
         ></b-form-textarea>
         
       </b-form-group>
@@ -97,7 +97,7 @@
           required
            rows="2"
       max-rows="6"
-          placeholder="Text Area (รายระเอียด)"
+          placeholder="จำนวนเงินที่สนับสนุนของทุน"
         ></b-form-textarea>
         
       </b-form-group>
@@ -107,42 +107,26 @@
         label="File:"
         label-for="input-4"
         description="* 
-เอกสาารต่างๆสามารถอัพโหลดได้โดยเป็น (PDF)"
+เอกสาารต่างๆสามารถอัพโหลดได้โดยเป็น (PDF) หรือ รูปภาพ"
       >
         <b-form-file
           id="input-4"
           v-model="file1"
           :state="Boolean(file1)"         
           placeholder="Enter File"
-          accept=".pdf"
+       
           required
         ></b-form-file>
         
       </b-form-group>
-        <b-form-group
-        id="input-group-5"
-        label="Photo:"
-        label-for="input-5"
-        description="* จำเป็นต้องเพิ่มไฟล์รูปภาพ
-"
-      >
-        <b-form-file
-          id="input-5"
-          v-model="file2"
-          :state="Boolean(file2)"         
-          placeholder="Enter File"
-          accept="image/*"
-          required
-        ></b-form-file>
-        
-      </b-form-group>
+ 
         
 <div>
       <p>Progress:  {{uploadValue.toFixed()+"%"}}
       <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
     </div>
  
-      <b-button @click="researchadd( text1,selected,text2,week1,week2,text3,file1,file2)" variant="primary">Add</b-button>&nbsp;
+      <b-button @click="researchadd( text1,selected,text2,week1,week2,text3,file1)" variant="primary">Add</b-button>&nbsp;
       <b-button type="reset" variant="warning">Reset</b-button>&nbsp;
       
 
@@ -219,7 +203,7 @@ var researchRef = database.ref('/research')
         })
       },OnBack(){
          window.history.back();
-      },researchadd( text1,selected,text2,week1,week2,text3,file1,file2){   
+      },researchadd( text1,selected,text2,week1,week2,text3,file1){   
         let data = {
         name: text1,
         firstweek : week1,
@@ -228,12 +212,12 @@ var researchRef = database.ref('/research')
         category : selected,
         value : text3,
         docname : file1.name,
-        photoname : file2.name
+      
      
       }
      
         researchRef.push(data)
-        const storageRef=(firebase.storage().ref(`research/document/${file1.name}`).put(file1),firebase.storage().ref(`research/photo/${file2.name}`).put(file2)); 
+        const storageRef=(firebase.storage().ref(`research/document/${file1.name}`).put(file1)); 
         storageRef.on(`state_changed`,snapshot=>{
         this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
       }, error=>{console.log(error.message)},

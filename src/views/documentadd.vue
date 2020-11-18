@@ -69,22 +69,7 @@
         ></b-form-file>
         
       </b-form-group>
-        <b-form-group
-        id="input-group-5"
-        label="Photo:"
-        label-for="input-5"
-           description="* จำเป็นต้องเพิ่มไฟล์รูปภาพ"
-      >
-        <b-form-file
-          id="input-5"
-          v-model="file2"
-          :state="Boolean(file2)"       
-       required
-          placeholder="upload photo" 
-           accept="image/*"
-        ></b-form-file>
-        
-      </b-form-group>
+ 
       <b-form-group
         id="input-data-1"
         label="Data Start:"
@@ -101,7 +86,7 @@
     </div>
 
         
-      <b-button @click="adddocument( text1,text2,week1,file,file2) " variant="primary">Add</b-button>&nbsp;      
+      <b-button @click="adddocument( text1,text2,week1,file) " variant="primary">Add</b-button>&nbsp;      
       <b-button type="reset" variant="warning">Reset</b-button>
 
     </b-form>
@@ -120,8 +105,8 @@ var documentRef = database.ref('/document')
         text1 : '',
         text2 :'',
         week1: '',
-        file: null,
-        file2: null
+        file: null
+      
         
       }
     },
@@ -142,16 +127,16 @@ var documentRef = database.ref('/document')
   
       },OnBack(){
          window.history.back();
-      },adddocument(text1,text2,week1,file,file2){      
+      },adddocument(text1,text2,week1,file){      
       let data = {
         name: text1,
         detail: text2,
         week : week1,
         docname : file.name,
-        photoname : file2.name
+       
          } 
          documentRef.push(data);           
-         const storageRef=(firebase.storage().ref(`document/document/${file.name}`).put(file),firebase.storage().ref(`document/photo/${file2.name}`).put(file2)); 
+         const storageRef=(firebase.storage().ref(`document/document/${file.name}`).put(file)); 
          storageRef.on(`state_changed`,snapshot=>{
         this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
       }, error=>{console.log(error.message)},

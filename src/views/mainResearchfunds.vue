@@ -37,13 +37,13 @@
   </b-navbar>
 </div>
    <b-container class="mt-3" :key="key" v-for="(research, key) in researchs">
-       
+       <b-form v-on="picon(research)"></b-form>
      <h2>ทุนวิจัย</h2>
     
      <div class="text-center">
          <h4>{{research.name}}</h4>
          <br>
-          <img height="190px" weight=auto src="https://assets-global.website-files.com/583347ca8f6c7ee058111b55/5afc770caa130421393fa412_google-doc-error-message.png">
+          <img height="230px" weight=auto  :src="pic">
     </div><br>
     <div class="container">     
     ดาวน์โหลดไฟล์ที่เกี่ยวข้อง :  <a @click="h(research)" style="color:blue">{{research.docname}}</a>
@@ -71,7 +71,7 @@
 {{research.category}} 
 
     </div>
- </b-container>ผ
+ </b-container>
  
    
    
@@ -93,6 +93,16 @@ export default {
       }
     },
     methods: {
+      picon(research){
+           if(research.category=="ทุนภายนอกมหาวิทยาลัย"){
+            this.pic="https://firebasestorage.googleapis.com/v0/b/chatbot01-hucg.appspot.com/o/pngtree-lovely-landscape-outside-the-window-window-png-image_463632.jpg?alt=media&token=78ca3238-79a7-4452-b13b-5b6e31e068cf"
+          }else if(research.category=="ทุนภายในคณะวิทยาลัยการคอมพิวเตอร์"){
+               this.pic="https://firebasestorage.googleapis.com/v0/b/chatbot01-hucg.appspot.com/o/coc.png?alt=media&token=44a0dee3-b0a4-423b-ad32-91a4e8ef88f1"
+          }
+         else {
+         this.pic="https://firebasestorage.googleapis.com/v0/b/chatbot01-hucg.appspot.com/o/Logo-PSU-EH-01.png?alt=media&token=58eb28ac-aef5-42ee-837c-bd38202faf71"
+          }
+      },
          
     h(research) {  const storage = firebase.storage();
          storage.ref(`research/document/${research.docname}`).getDownloadURL()
@@ -101,6 +111,7 @@ export default {
            window.location.href = url
          })
  
+       
           }
     },
     

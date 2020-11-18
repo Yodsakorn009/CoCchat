@@ -92,7 +92,7 @@
       >
         <b-form-textarea
           id="input-3"
-          v-model="tetx3"
+          v-model="text3"
           type="text"
           required
            rows="2"
@@ -101,38 +101,23 @@
         ></b-form-textarea>
         
       </b-form-group>
-            <b-form-group
-        id="input-group-4"
-        label="File:"
-        label-for="input-4"
-        description="* 
-เอกสาารต่างๆสามารถอัพโหลดได้โดยเป็น (PDF)"
-      >
-        <b-form-file
-          id="input-4"
-          v-model="file1"
-          :state="Boolean(file1)"         
-          placeholder="Enter File"
-          accept=".pdf"
-        ></b-form-file>
-        
-      </b-form-group>
-        <b-form-group
+         <b-form-group
         id="input-group-5"
-        label="Photo:"
+        label="File:"
         label-for="input-5"
-        description="* ไม่จำเป็นต้องเพิ่มไฟล์รูปภาพหากไม่มี
-เอกสาารต่างๆสามารถอัพโหลดได้โดยเป็น (PDF)"
+        description=""
       >
-        <b-form-file
+        <b-form-input
           id="input-5"
-          v-model="file2"
-          :state="Boolean(file2)"         
-          placeholder="Enter File"
-          accept="image/*"
-        ></b-form-file>
+          v-model="text4"
+          type="text"
+          required
+          disabled
+          placeholder="Text Area (รายระเอียด)"
+        ></b-form-input>
         
       </b-form-group>
+       
         
 
         
@@ -195,7 +180,8 @@ var researchRef = database.ref('/research')
       this.week2 = research.endweek
       this.selected = research.category
       this.text2 = research.detail,
-      this.tetx3 = research.value
+      this.text3 = research.value
+       this.text4= research.docname
           },
       updateresearch(key,text1,week1,week2,selected,text2){
           researchRef.child(key).update({

@@ -44,7 +44,7 @@
      <div class="text-center">
          <h4>{{document.name}}</h4>
           <br>
-          <img height="190px" src="https://assets-global.website-files.com/583347ca8f6c7ee058111b55/5afc770caa130421393fa412_google-doc-error-message.png">          
+          <img height="230px" src="https://firebasestorage.googleapis.com/v0/b/chatbot01-hucg.appspot.com/o/document-app-icon-or-logo-icon-design-template-7b6cac8de4b9abdd949f7643fe00924e_screen.jpg?alt=media&token=0684c897-c3c4-47ae-b21a-80881a8da2ca">          
          
     </div><br>
     <div class="container">

@@ -53,35 +53,21 @@
         
       </b-form-group>
            <b-form-group
-        id="input-group-3"
-        label="File:"
-        label-for="input-3"
-        description=""
-      >
-        <b-form-file
-          id="input-3"
-          v-model="file"
-        
-          required
-          placeholder="upload file"
-        ></b-form-file>
-        
-      </b-form-group>
-        <b-form-group
         id="input-group-4"
-        label="Photo:"
+        label="File:"
         label-for="input-4"
         description=""
       >
-        <b-form-file
+        <b-form-input
           id="input-4"
-          v-model="file2"
-         
-          placeholder="upload photo"
-        ></b-form-file>
+          v-model="text4"
+          type="text"
+          disabled
+          placeholder=""
+        ></b-form-input>
         
       </b-form-group>
-      <a :href="picture">sdadasd</a>
+   
        <b-form-group
         id="input-data-1"
         label="Data Start:"
@@ -136,7 +122,7 @@ var documentRef = database.ref('/document')
       this.text1 = document.name
       this.text2 = document.detail
      this.week1 = document.week 
-     
+     this.text4 = document.docname 
       
           },Delete(key){
       documentRef.child(key).remove()
