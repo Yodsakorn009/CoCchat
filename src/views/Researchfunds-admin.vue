@@ -14,13 +14,13 @@
         <b-nav-item active href="/admin/res">ทุนวิจัย</b-nav-item>
         <b-nav-item active href="/admin/doc">เอกสาร</b-nav-item>
         <b-nav-item active href="/admin/qus">คำถามทั่วไป</b-nav-item>
+     
       </b-navbar-nav>
       
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
          <b-nav-form>
-          <b-form-input size="s" class="mr-sm-2" placeholder="Search"></b-form-input>
-          <b-button size="s" class="my-2 my-sm-0" type="submit">Search</b-button>
+             <b-button  active href="/admin/editdetail" variant="success">Edit Detail bar</b-button>
         </b-nav-form>
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->

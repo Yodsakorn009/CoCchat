@@ -2,7 +2,7 @@
 
   <div class="admin">
 <div>
-  <b-navbar toggleable="lg" type="dark" variant="info">
+  <b-navbar toggleable="lg"  type="dark" variant="info">
     <div class="container">
       <b-navbar-brand href="/admin">
       <img height="25px" src="https://www.computing.psu.ac.th/th/wp-content/uploads/2018/03/PSU_CoC_ENG.png">
@@ -16,13 +16,14 @@
         <b-nav-item active href="/admin/res">ทุนวิจัย</b-nav-item>
         <b-nav-item active href="/admin/doc">เอกสาร</b-nav-item>
         <b-nav-item active href="/admin/qus">คำถามทั่วไป</b-nav-item>
+
+     
       </b-navbar-nav>
       
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-         <b-nav-form>
-          <b-form-input size="s" class="mr-sm-2" placeholder="Search"></b-form-input>
-          <b-button size="s" class="my-2 my-sm-0" type="submit">Search</b-button>
+            <b-nav-form>
+             <b-button  active href="/admin/editdetail" variant="success">Edit Detail bar</b-button>
         </b-nav-form>
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
@@ -39,7 +40,6 @@
  <div class="mt-3 container" >
     <b-carousel
       id="carousel-1"
-      v-model="slide"
       :interval="4000"
       controls
       indicators
@@ -47,8 +47,7 @@
       img-width="1024"
       img-height="480"
       style="text-shadow: 1px 1px 2px #333;"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
+
     >
       <!-- Text slides with image -->
       <b-carousel-slide
@@ -101,9 +100,7 @@
       </b-list-group-item>    
     </b-list-group>
    </b-container>
-   <div class="container mt-3"> <center>
-<b-button :pressed.sync="myToggle" active href="/admin/editdetail" variant="primary">Edit Detail bar</b-button></center>
-   </div>
+  
  
 </div>
 </template>

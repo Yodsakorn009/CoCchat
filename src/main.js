@@ -8,6 +8,8 @@ Vue.use(NavbarPlugin)
 import { LayoutPlugin } from 'bootstrap-vue'
 Vue.use(LayoutPlugin)
 import router from './router/router'
+import { BPagination } from 'bootstrap-vue'
+Vue.component('b-pagination', BPagination)
 
 import VueConfirmDialog from 'vue-confirm-dialog'
  
@@ -16,6 +18,8 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
+import { BTable } from 'bootstrap-vue'
+Vue.component('b-table', BTable)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 import 'bootstrap/dist/css/bootstrap.css'

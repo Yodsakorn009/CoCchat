@@ -18,7 +18,6 @@
 <div class="container mt-3">
       <b-carousel
       id="carousel-1"
-      v-model="slide"
       :interval="4000"
       controls
       indicators
@@ -26,8 +25,6 @@
       img-width="1024"
       img-height="480"
       style="text-shadow: 1px 1px 2px #333;"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
     >
       <!-- Text slides with image -->
       <b-carousel-slide
@@ -45,7 +42,7 @@
 
     </b-carousel>
 
-<b-form class="mt-3" @submit="onSubmit" @reset="onReset" v-if="show">
+<b-form class="mt-3" @submit="onSubmit" @reset="onReset">
       <b-form-group
         id="input-group-1"
         label="User:"
@@ -54,8 +51,8 @@
       >
         <b-form-input
           id="input-1"
-          v-model="form.user"
-          type="user"
+          v-model="user"
+         
           required
           placeholder="Enter username"
         ></b-form-input>
@@ -64,8 +61,9 @@
       <b-form-group id="input-group-2" label="Your Password:" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="form.pass"
+          v-model="pass"
           required
+          type="password"
           placeholder="Enter password"
         ></b-form-input>
       </b-form-group>
@@ -82,6 +80,8 @@
    export default {
     data() {
       return {
+         user: '',
+          pass: '',   
         form: {
           user: '',
           pass: '',          
@@ -92,19 +92,21 @@
     },
     methods: {
       onSubmit(evt) {
+            if(this.uesr !="" && this.pass!=""){
+              if(this.user == "admin" && this.pass =="12345678"){
+               window.location.href = "/admin"
+              }else{
+               alert("Hello! I am an alert box!!");
+              }
+            }
         evt.preventDefault()
-       window.location.href = "/admin"
+       
       },
       onReset(evt) {
         evt.preventDefault()
         // Reset our form values
-        this.form.user = ''
-        this.form.pass = ''        
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
+        this.user = ''
+        this.pass = ''        
       },OnBack(){
          window.history.back();
       }
@@ -114,5 +116,4 @@
 </script>
 
 <style>
-
 </style>

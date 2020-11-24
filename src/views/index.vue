@@ -20,10 +20,7 @@
       
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-         <b-nav-form>
-          <b-form-input size="s" class="mr-sm-2" placeholder="Search"></b-form-input>
-          <b-button size="s" class="my-2 my-sm-0" type="submit">Search</b-button>
-        </b-nav-form>
+        
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
           <template v-slot:button-content>
@@ -36,12 +33,11 @@
     </div>
   </b-navbar>
 </div>
-     <my-header></my-header>
+
 
  <div class="mt-3 container" >
     <b-carousel
       id="carousel-1"
-      v-model="slide"
       :interval="4000"
       controls
       indicators
@@ -49,36 +45,38 @@
       img-width="1024"
       img-height="480"
       style="text-shadow: 1px 1px 2px #333;"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
-    >
-      <!-- Text slides with image -->
+         >
       <b-carousel-slide
         caption="PSU PHUKET CAMPUS"
         text="Prince of Songkla University"
         img-src="https://www.psu.ac.th/sites/files/n7424_ft160603_01.png"
       ></b-carousel-slide>
 
-      <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/1024/480/?image=52"
-      ></b-carousel-slide>
-
 
     </b-carousel>
 
   </div >
+  
    <b-container class="mt-3  bv-example-row">
      <h4>ทุนวิจัย</h4>
+     
    <b-list-group style="max-width: 100%;" >
      
-      <b-list-group-item class="d-flex align-items-center" :key="key" v-for="(research, key) in researchs" :href="'/mainResearchfunds/'+key">
+      <b-list-group-item  class="d-flex align-items-center" :key="key" v-for="(research, key) in researchs" :href="'/mainResearchfunds/'+key">
         <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
         <span class="mr-auto" >{{research.name}}</span>
         <b-badge>{{research.week1}}</b-badge>
       </b-list-group-item>
-      
+            
+       <div class="overflow-auto mt-3">
+      <b-pagination 
+      v-model="currentPage"    
+      :total-rows="repage"
+      :per-page="perPage"
+      pills 
+      v-on:change="changePage" align="right"
+    ></b-pagination>
+       </div>
      
     </b-list-group>
    </b-container>
@@ -86,14 +84,14 @@
      <h4>เอกสาร</h4>
    <b-list-group style="max-width: 100%;">
      
-       <b-list-group-item :key="key" v-for="(document, key) in documents" class="d-flex align-items-center" :href="'/maindocument/'+key">
-        <img height="25px" src="https://img.icons8.com/ios/452/document.png">
+       <b-list-group-item :key="key"  v-for="(document, key) in documents" class="d-flex align-items-center" :href="'/maindocument/'+key">
+        <img height="25px"  src="https://img.icons8.com/ios/452/document.png">
         <span class="mr-auto" >{{document.name}}</span>
         <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
-     
-     
+      
     </b-list-group>
+    
    </b-container>
       <b-container class="mt-3 bv-example-row">
      <h4>คำถามทั่วไป</h4>
@@ -108,7 +106,7 @@
     </b-list-group>
    </b-container>
    
- <my-footer></my-footer>
+ 
 </div>
 </template>
 
@@ -124,21 +122,43 @@ var researchRef = database.ref('/research')
 export default {
  
   data () {
-    return {
-      questions: {}     ,
-      documents: {} ,
-       researchs: {}     
+    return {   
+      perPage: 4,
+      currentPage: 1,
+      questions: {},
+      documents: {},
+      researchs: {},
+      repage :{},
+      dataList: []
+       
+    }
+  },methods:{
+    changePage(page) {
+      this.researchs = {};
+      this.dataList.slice((page - 1) * this.perPage, page * this.perPage).forEach((item) => {
+        this.researchs[item[0]] = item[1];
+      })
     }
   },
   mounted () {
     questionRef.on('value', (snapshot) => {
       this.questions = snapshot.val()
-    }),
+    }),  
    documentRef.on('value', (snapshot) => {
       this.documents = snapshot.val()
     }),
       researchRef.on('value', (snapshot) => {
-      this.researchs = snapshot.val()
+      this.dataList = Object.entries(snapshot.val());
+
+      this.dataList.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage).forEach((item) => {
+        this.researchs[item[0]] = item[1];
+      })
+
+      // this.researchs = dataList ? dataList.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage) : [];
+      const val = snapshot.val();
+      const arr = Object.values(val);//เปลี่ยงจาก Oject เป็น Area
+      this.repage = arr.length
+ 
     })
   }
 }
@@ -149,14 +169,7 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+
 a {
   color: #42b983;
 }

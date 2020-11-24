@@ -19,10 +19,7 @@
       
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-         <b-nav-form>
-          <b-form-input size="s" class="mr-sm-2" placeholder="Search"></b-form-input>
-          <b-button size="s" class="my-2 my-sm-0" type="submit">Search</b-button>
-        </b-nav-form>
+        
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
           <template v-slot:button-content>
@@ -44,7 +41,7 @@
        <b-list-group-item class="d-flex align-items-center" :key="key" v-for="(research, key) in researchs" :href="'/mainResearchfunds/'+key">
         <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
         <span class="mr-auto" >{{research.name}}</span>
-        <b-badge>{{research.week1}}</b-badge>
+        <b-badge>{{research.firstweek}}</b-badge>
       </b-list-group-item>
        
       
@@ -76,6 +73,17 @@ export default {
  
   researchRef.on('value', (snapshot) => {
       this.researchs = snapshot.val()
+      const val = snapshot.val();
+      const arr = Object.values(val);//เปลี่ยงจาก Oject เป็น Area
+      console.log(arr);
+        const strList = arr.map(item => {
+            return "คำถาม: " + item.name;
+        });
+        const result = strList.filter(item => item.indexOf("ทุนภายในมหาวิทยาลัย") >= 0);
+        //กรองข้อมูลที่เราต้องการ 
+        if (result.length >0){
+        console.log(result);
+        }
     })
   }
 }
