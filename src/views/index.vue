@@ -90,6 +90,15 @@
         <b-badge>12-2-2563</b-badge>
       </b-list-group-item>
       
+        <div class="overflow-auto mt-3">
+      <b-pagination 
+      v-model="currentPage1"    
+      :total-rows="docpage"
+      :per-page="perPage1"
+      pills 
+      v-on:change="changePage1" align="right"
+    ></b-pagination>
+       </div>
     </b-list-group>
     
    </b-container>
@@ -101,7 +110,15 @@
        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
         <span class="mr-auto" >{{question.name}}</span>       
       </b-list-group-item>
-   
+          <div class="overflow-auto mt-3">
+      <b-pagination 
+      v-model="currentPage2"    
+      :total-rows="quespage"
+      :per-page="perPage2"
+      pills 
+      v-on:change="changePage2" align="right"
+    ></b-pagination>
+       </div>
      
     </b-list-group>
    </b-container>
@@ -125,11 +142,20 @@ export default {
     return {   
       perPage: 4,
       currentPage: 1,
+       perPage1: 4,
+      currentPage1: 1,
+         perPage2: 4,
+      currentPage2: 1,
       questions: {},
       documents: {},
       researchs: {},
       repage :{},
-      dataList: []
+      quespage:{},
+      docpage:{},
+      dataList: [],
+      dataList1: [],
+      dataList2: []
+
        
     }
   },methods:{
@@ -138,14 +164,40 @@ export default {
       this.dataList.slice((page - 1) * this.perPage, page * this.perPage).forEach((item) => {
         this.researchs[item[0]] = item[1];
       })
+    },
+      changePage1(page) {
+      this.documents = {};
+      this.dataList1.slice((page - 1) * this.perPage1, page * this.perPage1).forEach((item) => {
+        this.documents[item[0]] = item[1];
+      })
+    },
+     changePage2(page) {
+      this.questions = {};
+      this.dataList2.slice((page - 1) * this.perPage2, page * this.perPage2).forEach((item) => {
+        this.questions[item[0]] = item[1];
+      })
     }
   },
   mounted () {
     questionRef.on('value', (snapshot) => {
-      this.questions = snapshot.val()
+       this.dataList2 = Object.entries(snapshot.val());
+
+      this.dataList2.slice((this.currentPage2 - 1) * this.perPage2, this.currentPage2 * this.perPage2).forEach((item) => {
+        this.questions[item[0]] = item[1];
+      })
+      const val = snapshot.val();
+      const arr = Object.values(val);//เปลี่ยงจาก Oject เป็น Area
+      this.quespage = arr.length
     }),  
    documentRef.on('value', (snapshot) => {
-      this.documents = snapshot.val()
+       this.dataList1 = Object.entries(snapshot.val());
+
+      this.dataList1.slice((this.currentPage1 - 1) * this.perPage1, this.currentPage1 * this.perPage1).forEach((item) => {
+        this.documents[item[0]] = item[1];
+      })
+      const val = snapshot.val();
+      const arr = Object.values(val);//เปลี่ยงจาก Oject เป็น Area
+      this.docpage = arr.length
     }),
       researchRef.on('value', (snapshot) => {
       this.dataList = Object.entries(snapshot.val());
@@ -153,8 +205,6 @@ export default {
       this.dataList.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage).forEach((item) => {
         this.researchs[item[0]] = item[1];
       })
-
-      // this.researchs = dataList ? dataList.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage) : [];
       const val = snapshot.val();
       const arr = Object.values(val);//เปลี่ยงจาก Oject เป็น Area
       this.repage = arr.length
