@@ -44,7 +44,15 @@
         <span class="mr-auto" >{{document.name}}</span>
         <b-badge>{{document.week}}</b-badge>
       </b-list-group-item>
-     
+           <div class="overflow-auto mt-3">
+      <b-pagination 
+      v-model="currentPage"    
+      :total-rows="docpage"
+      :per-page="perPage"
+      pills 
+      v-on:change="changePage" align="right"
+    ></b-pagination>
+       </div>
     </b-list-group>
    </b-container>
    
@@ -64,14 +72,30 @@ var documentRef = database.ref('/document')
 
 export default {
     data() {
-      return {
-        documents: {}    
+      return {perPage: 10,
+      currentPage: 1,
+        documents: {},
+      dataList: [],
+      docpage:{}  
+        
       }
-    },
+    },methods:{
+    changePage(page) {
+      this.documents = {};
+      this.dataList.slice((page - 1) * this.perPage, page * this.perPage).forEach((item) => {
+        this.documents[item[0]] = item[1];
+      })
+    }},
   mounted () {
  
    documentRef.on('value', (snapshot) => {
-      this.documents = snapshot.val()
+      this.dataList = Object.entries(snapshot.val());
+      this.dataList.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage).forEach((item) => {
+        this.documents[item[0]] = item[1];
+      })
+      const val = snapshot.val();
+      const arr = Object.values(val);//เปลี่ยงจาก Oject เป็น Area
+      this.docpage = arr.length
     })
   }
 }

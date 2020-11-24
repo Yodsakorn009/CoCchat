@@ -44,7 +44,16 @@
         <b-badge>{{research.firstweek}}</b-badge>
       </b-list-group-item>
        
-      
+           <div class="overflow-auto mt-3">
+      <b-pagination 
+      v-model="currentPage"    
+      :total-rows="repage"
+      :per-page="perPage"
+      pills 
+      v-on:change="changePage" align="right"
+    ></b-pagination>
+       </div>
+     
      
     </b-list-group>
    </b-container>
@@ -65,25 +74,31 @@ var researchRef = database.ref('/research')
 
 export default {
     data() {
-      return {
-        researchs: {}    
+      return { perPage: 10,
+      currentPage: 1,
+        researchs: {},
+      dataList: [],
+      repage:{}  
       }
-    },
+    },methods:{
+    changePage(page) {
+      this.researchs = {};
+      this.dataList.slice((page - 1) * this.perPage, page * this.perPage).forEach((item) => {
+        this.researchs[item[0]] = item[1];
+      })
+    }},
   mounted () {
  
   researchRef.on('value', (snapshot) => {
-      this.researchs = snapshot.val()
+         this.dataList = Object.entries(snapshot.val());
+
+      this.dataList.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage).forEach((item) => {
+        this.researchs[item[0]] = item[1];
+      })
       const val = snapshot.val();
       const arr = Object.values(val);//เปลี่ยงจาก Oject เป็น Area
-      console.log(arr);
-        const strList = arr.map(item => {
-            return "คำถาม: " + item.name;
-        });
-        const result = strList.filter(item => item.indexOf("ทุนภายในมหาวิทยาลัย") >= 0);
-        //กรองข้อมูลที่เราต้องการ 
-        if (result.length >0){
-        console.log(result);
-        }
+      this.repage = arr.length
+
     })
   }
 }

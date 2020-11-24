@@ -43,10 +43,15 @@
        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
         <span class="mr-auto" >{{question.name}}</span>       
       </b-list-group-item>
-   
-
-      
-     
+      <div class="overflow-auto mt-3">
+      <b-pagination 
+      v-model="currentPage"    
+      :total-rows="quespage"
+      :per-page="perPage"
+      pills 
+      v-on:change="changePage" align="right"
+    ></b-pagination>
+       </div>
     </b-list-group>
    </b-container>
    
@@ -66,13 +71,31 @@ var questionRef = database.ref('/question')
 export default {
  
   data () {
-    return {
-      questions: {}     
+    return {perPage: 10,
+      currentPage: 1,
+        questions: {},
+      dataList: [],
+      quespage:{}  
+      
+      
     }
-  },
+  },methods:{
+    changePage(page) {
+      this.questions = {};
+      this.dataList.slice((page - 1) * this.perPage, page * this.perPage).forEach((item) => {
+        this.questions[item[0]] = item[1];
+      })
+    }},
   mounted () {
     questionRef.on('value', (snapshot) => {
-      this.questions = snapshot.val()
+       this.dataList = Object.entries(snapshot.val());
+
+      this.dataList.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage).forEach((item) => {
+        this.questions[item[0]] = item[1];
+      })
+      const val = snapshot.val();
+      const arr = Object.values(val);//เปลี่ยงจาก Oject เป็น Area
+      this.quespage = arr.length
     })
   }
 }
