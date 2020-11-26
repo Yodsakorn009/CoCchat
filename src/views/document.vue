@@ -37,6 +37,58 @@
       </div >
    <b-container class="mt-3">
      <h2>เอกสาร</h2>
+       <b-row>
+      <b-col lg="4" class="my-2">
+        <b-form-group
+          label="Sort"
+          label-cols-sm="1"
+          label-align-sm="right"
+          label-size="sm"
+          label-for="sortBySelect"
+          class="mb-0"
+        >
+          <b-input-group size="sm">
+            <b-form-select v-model="sortBy" class="w-10">
+              <template #first>
+                <option value="name">-- ชื่อ --</option>
+                <option value="date">-- เวลา --</option>
+              </template>
+            </b-form-select>
+        
+            <b-form-select v-model="sortDesc" size="sm" class="w-10">
+              <option :value="false">Asc</option>
+              <option :value="true">Desc</option>
+            </b-form-select>
+          </b-input-group>
+        </b-form-group>
+      </b-col>   <b-col lg="2" class="my-2">
+        </b-col>
+      <b-col lg="6" class="my-2">
+        <b-form-group
+          label="Filter"
+          label-cols-sm="2"
+          label-align-sm="right"
+          label-size="sm"
+          label-for="filterInput"
+          class="mb-0"
+        >
+          <b-input-group size="sm">
+            <b-form-input
+              v-model="filter"
+              type="search"
+              id="filterInput"
+              placeholder="Type to Search"
+            ></b-form-input>
+            <b-input-group-append>
+              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+            </b-input-group-append>
+            
+          </b-input-group>
+          
+        </b-form-group>
+      </b-col>
+      
+      </b-row>
    <b-list-group style="max-width: 100%;">
      
       <b-list-group-item :key="key" v-for="(document, key) in documents" class="d-flex align-items-center" :href="'/maindocument/'+key">
