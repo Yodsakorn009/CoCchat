@@ -33,11 +33,7 @@
         img-src="https://www.psu.ac.th/sites/files/n7424_ft160603_01.png"
       ></b-carousel-slide>
 
-      <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/1024/480/?image=52"
-      ></b-carousel-slide>
+   
 
 
     </b-carousel>
@@ -52,7 +48,7 @@
         <b-form-input
           id="input-1"
           v-model="user"
-         
+         type="email"
           required
           placeholder="Enter username"
         ></b-form-input>
@@ -77,6 +73,7 @@
 </template>
 
 <script>
+import firebase from "../components/firebase"
    export default {
     data() {
       return {
@@ -92,13 +89,19 @@
     },
     methods: {
       onSubmit(evt) {
-            if(this.uesr !="" && this.pass!=""){
-              if(this.user == "admin" && this.pass =="12345678"){
-               window.location.href = "/admin"
-              }else{
-               alert("Hello! I am an alert box!!");
-              }
-            }
+  firebase.auth().signInWithEmailAndPassword(this.user, this.pass)
+  .then((user) => {
+    // Signed in 
+    console.log(user);
+     window.location.href = "/admin"
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+      console.log(errorCode,errorMessage);
+    alert(errorMessage);
+  });
         evt.preventDefault()
        
       },

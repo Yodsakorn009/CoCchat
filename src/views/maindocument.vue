@@ -20,10 +20,7 @@
       
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-         <b-nav-form>
-          <b-form-input size="s" class="mr-sm-2" placeholder="Search"></b-form-input>
-          <b-button size="s" class="my-2 my-sm-0" type="submit">Search</b-button>
-        </b-nav-form>
+       
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
           <template v-slot:button-content>
@@ -63,7 +60,7 @@
      <div class="container">
       ดาวน์โหลดไฟล์ที่เกี่ยวข้อง :
       <div class="text-center">
-    <a @click="h(document)" style="color:blue">{{document.docname}}</a>
+    <a @click="h(document)" class="pointer" style="color:blue">{{document.docname}}</a>
     </div>
     </div>
      </div>
@@ -121,4 +118,5 @@ li {
 a {
   color: #42b983;
 }
+.pointer {cursor: pointer;}
 </style>

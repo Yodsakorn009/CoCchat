@@ -56,11 +56,7 @@
         img-src="https://www.psu.ac.th/sites/files/n7424_ft160603_01.png"
       ></b-carousel-slide>
 
-      <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/1024/480/?image=52"
-      ></b-carousel-slide>
+   
 
 
     </b-carousel>
@@ -75,7 +71,15 @@
         <span class="mr-auto" >{{research.name}}</span>
         <b-badge>{{research.week1}}</b-badge>
       </b-list-group-item>
-     
+        <div class="overflow-auto mt-3">
+      <b-pagination 
+      v-model="currentPage"    
+      :total-rows="repage"
+      :per-page="perPage"
+      pills 
+      v-on:change="changePage" align="right"
+    ></b-pagination>
+       </div>
     </b-list-group>
    </b-container>
       <b-container class="mt-3 bv-example-row">
@@ -88,7 +92,15 @@
         <b-badge>{{document.week}}</b-badge>
       </b-list-group-item>
      
-     
+           <div class="overflow-auto mt-3">
+      <b-pagination 
+      v-model="currentPage1"    
+      :total-rows="docpage"
+      :per-page="perPage1"
+      pills 
+      v-on:change="changePage1" align="right"
+    ></b-pagination>
+       </div>
     </b-list-group>
    </b-container>
       <b-container class="mt-3 bv-example-row">
@@ -97,7 +109,16 @@
       <b-list-group-item class="d-flex align-items-center" :href="'/admin/questiondetail/'+key" :key="key" v-for="(question, key) in questions">
        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >
         <span class="mr-auto" >{{question.name}}</span>       
-      </b-list-group-item>    
+      </b-list-group-item>   
+              <div class="overflow-auto mt-3">
+      <b-pagination 
+      v-model="currentPage2"    
+      :total-rows="quespage"
+      :per-page="perPage2"
+      pills 
+      v-on:change="changePage2" align="right"
+    ></b-pagination>
+       </div> 
     </b-list-group>
    </b-container>
   
@@ -116,19 +137,72 @@ export default {
  
   data () {
     return {
-       questions: {},
-        documents: {},
-      researchs: {}     
+       perPage: 4,
+      currentPage: 1,
+       perPage1: 4,
+      currentPage1: 1,
+         perPage2: 4,
+      currentPage2: 1,
+      questions: {},
+      documents: {},
+      researchs: {},
+      repage :{},
+      quespage:{},
+      docpage:{},
+      dataList: [],
+      dataList1: [],
+      dataList2: []     
+    }
+  },methods:{
+    changePage(page) {
+      this.researchs = {};
+      this.dataList.slice((page - 1) * this.perPage, page * this.perPage).forEach((item) => {
+        this.researchs[item[0]] = item[1];
+      })
+    },
+      changePage1(page) {
+      this.documents = {};
+      this.dataList1.slice((page - 1) * this.perPage1, page * this.perPage1).forEach((item) => {
+        this.documents[item[0]] = item[1];
+      })
+    },
+     changePage2(page) {
+      this.questions = {};
+      this.dataList2.slice((page - 1) * this.perPage2, page * this.perPage2).forEach((item) => {
+        this.questions[item[0]] = item[1];
+      })
     }
   },mounted () {
     questionRef.on('value', (snapshot) => {
-      this.questions = snapshot.val()
-    }),
+       this.dataList2 = Object.entries(snapshot.val());
+
+      this.dataList2.slice((this.currentPage2 - 1) * this.perPage2, this.currentPage2 * this.perPage2).forEach((item) => {
+        this.questions[item[0]] = item[1];
+      })
+      const val = snapshot.val();
+      const arr = Object.values(val);//เปลี่ยงจาก Oject เป็น Area
+      this.quespage = arr.length
+    }),  
    documentRef.on('value', (snapshot) => {
-      this.documents = snapshot.val()
+       this.dataList1 = Object.entries(snapshot.val());
+
+      this.dataList1.slice((this.currentPage1 - 1) * this.perPage1, this.currentPage1 * this.perPage1).forEach((item) => {
+        this.documents[item[0]] = item[1];
+      })
+      const val = snapshot.val();
+      const arr = Object.values(val);//เปลี่ยงจาก Oject เป็น Area
+      this.docpage = arr.length
     }),
       researchRef.on('value', (snapshot) => {
-      this.researchs = snapshot.val()
+      this.dataList = Object.entries(snapshot.val());
+
+      this.dataList.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage).forEach((item) => {
+        this.researchs[item[0]] = item[1];
+      })
+      const val = snapshot.val();
+      const arr = Object.values(val);//เปลี่ยงจาก Oject เป็น Area
+      this.repage = arr.length
+ 
     })
   }
 }
