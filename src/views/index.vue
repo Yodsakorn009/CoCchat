@@ -15,7 +15,7 @@
         <b-navbar-nav >
         <b-nav-item active href="/Research">ทุนวิจัย</b-nav-item>
         <b-nav-item active href="/document">เอกสาร</b-nav-item>
-        <b-nav-item active href="/question">คำถามทั่วไป</b-nav-item>
+        <b-nav-item active href="/question">คำถามที่พบบ่อย(FAQ)</b-nav-item>
       </b-navbar-nav>
       
       <!-- Right aligned nav items -->
@@ -103,7 +103,7 @@
     
    </b-container>
       <b-container class="mt-3 bv-example-row">
-     <h4>คำถามทั่วไป</h4>
+     <h4>คำถามที่พบบ่อย(FAQ)</h4>
    <b-list-group style="max-width: 100%;">     
     
       <b-list-group-item class="d-flex align-items-center" :href="'/mainquestion/'+key" :key="key" v-for="(question, key) in questions">

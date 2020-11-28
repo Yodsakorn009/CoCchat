@@ -126,8 +126,8 @@
       <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
     </div>
  
-      <b-button @click="researchadd( text1,selected,text2,week1,week2,text3,file1)" variant="primary">Add</b-button>&nbsp;
-      <b-button type="reset" variant="warning">Reset</b-button>&nbsp;
+      <b-button @click="researchadd( text1,selected,text2,week1,week2,text3,file1)" variant="primary">บันทึก</b-button>&nbsp;
+      <b-button type="reset" variant="warning">ยกเลิก</b-button>&nbsp;
       
 
     </b-form>

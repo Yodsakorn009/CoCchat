@@ -23,7 +23,7 @@
       <b-form-group 
       v-on="show (key, document)"
         id="input-group-1"
-        label="Text1:"
+        label="ชื่อเอกสาร:"
         label-for="input-1"
         description=""
       >
@@ -37,7 +37,7 @@
       </b-form-group>
        <b-form-group
         id="input-group-2"
-        label="Text2:"
+        label="ข้อมูล:"
         label-for="input-2"
         description=""
       >
@@ -70,7 +70,7 @@
    
        <b-form-group
         id="input-data-1"
-        label="Data Start:"
+        label="วันที่เริ่มประกาศ:"
         label-for="input-data-1"
         required
         description=""
@@ -127,6 +127,7 @@ var documentRef = database.ref('/document')
           },Delete(key){
       documentRef.child(key).remove()
       window.history.back();
+      
     },
      updatedocument(key,text1,text2,week1){
         documentRef.child(key).update({

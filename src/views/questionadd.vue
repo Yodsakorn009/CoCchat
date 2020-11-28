@@ -53,8 +53,8 @@
     
     
 
-      <b-button  @click="addquestion(question,detail,web)" variant="primary">Add</b-button>&nbsp;
-      <b-button type="reset" variant="danger">Reset</b-button>
+      <b-button  @click="addquestion(question,detail,web)" variant="primary">บันทึก</b-button>&nbsp;
+      <b-button type="reset" variant="danger">ยกเลิก</b-button>
 
     </b-form>
 </div>

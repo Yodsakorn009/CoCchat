@@ -15,7 +15,7 @@
         <b-navbar-nav >
         <b-nav-item active href="/Research">ทุนวิจัย</b-nav-item>
         <b-nav-item active href="/document">เอกสาร</b-nav-item>
-        <b-nav-item active href="/question">คำถามทั่วไป</b-nav-item>
+        <b-nav-item active href="/question">คำถามที่พบบ่อย(FAQ)</b-nav-item>
       </b-navbar-nav>
       
       <!-- Right aligned nav items -->

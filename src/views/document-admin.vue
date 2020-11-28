@@ -14,14 +14,14 @@
         <b-navbar-nav >
         <b-nav-item active href="/admin/res">ทุนวิจัย</b-nav-item>
         <b-nav-item active href="/admin/doc">เอกสาร</b-nav-item>
-        <b-nav-item active href="/admin/qus">คำถามทั่วไป</b-nav-item>
+        <b-nav-item active href="/admin/qus">คำถามที่พบบ่อย(FAQ)</b-nav-item>
 
       </b-navbar-nav>
       
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
           <b-nav-form>
-             <b-button  active href="/admin/editdetail" variant="success">Edit Detail bar</b-button>
+             <b-button  active href="/admin/editdetail" variant="success">แก้ไขข้อมูลการติดต่อ</b-button>
         </b-nav-form>
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
@@ -37,7 +37,59 @@
  <div class="mt-3 container" >
       </div >
    <b-container class="mt-3">
-     <h2>เอกสาร <b-button type="" active href="/admin/documentadd" variant="success">Add</b-button></h2>
+     <h2>เอกสาร <b-button type="" active href="/admin/documentadd" variant="success">เพิ่ม</b-button></h2>
+            <b-row>
+      <b-col lg="4" class="my-2">
+        <b-form-group
+          label="Sort"
+          label-cols-sm="1"
+          label-align-sm="right"
+          label-size="sm"
+          label-for="sortBySelect"
+          class="mb-0"
+        >
+          <b-input-group size="sm">
+            <b-form-select v-model="sortBy" class="w-10">
+              <template #first>
+                <option value="name">-- ชื่อ --</option>
+                <option value="date">-- เวลา --</option>
+              </template>
+            </b-form-select>
+        
+            <b-form-select v-model="sortDesc" size="sm" class="w-10">
+              <option :value="false">Asc</option>
+              <option :value="true">Desc</option>
+            </b-form-select>
+          </b-input-group>
+        </b-form-group>
+      </b-col>   <b-col lg="2" class="my-2">
+        </b-col>
+      <b-col lg="6" class="my-2">
+        <b-form-group
+          label="Filter"
+          label-cols-sm="2"
+          label-align-sm="right"
+          label-size="sm"
+          label-for="filterInput"
+          class="mb-0"
+        >
+          <b-input-group size="sm">
+            <b-form-input
+              v-model="filter"
+              type="search"
+              id="filterInput"
+              placeholder="Type to Search"
+            ></b-form-input>
+            <b-input-group-append>
+              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+            </b-input-group-append>
+            
+          </b-input-group>
+          
+        </b-form-group>
+      </b-col>
+      
+      </b-row>
    <b-list-group style="max-width: 100%;">
      
        <b-list-group style="max-width: 100%;">
@@ -47,7 +99,15 @@
         <span class="mr-auto" >{{document.name}}</span>
         <b-badge>{{document.week}}</b-badge>
       </b-list-group-item>
-     
+         <div class="overflow-auto mt-3">
+      <b-pagination 
+      v-model="currentPage"    
+      :total-rows="docpage"
+      :per-page="perPage"
+      pills 
+      v-on:change="changePage" align="right"
+    ></b-pagination>
+       </div>
      
     </b-list-group>
     </b-list-group>
@@ -70,13 +130,30 @@ var documentRef = database.ref('/document')
 export default {
     data() {
       return {
-        documents: {}    
+       perPage: 10,
+      currentPage: 1,
+        documents: {},
+      dataList: [],
+      docpage:{}  
+        ,sortBy:"name"
+        ,sortDesc:false
       }
-    },
+    },methods:{
+    changePage(page) {
+      this.documents = {};
+      this.dataList.slice((page - 1) * this.perPage, page * this.perPage).forEach((item) => {
+        this.documents[item[0]] = item[1];
+      })
+    }},
   mounted () {
- 
-   documentRef.on('value', (snapshot) => {
-      this.documents = snapshot.val()
+ documentRef.on('value', (snapshot) => {
+      this.dataList = Object.entries(snapshot.val());
+      this.dataList.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage).forEach((item) => {
+        this.documents[item[0]] = item[1];
+      })
+      const val = snapshot.val();
+      const arr = Object.values(val);//เปลี่ยงจาก Oject เป็น Area
+      this.docpage = arr.length
     })
   }
 }

@@ -25,7 +25,7 @@
      
       v-on=" showdetail (key, detailbar)"
         id="input-group-1"
-        label="Text1:"
+        label="สังกัด:"
         label-for="input-1"
         description=""
       >
@@ -40,7 +40,7 @@
       </b-form-group>
       <b-form-group
         id="input-group-1"
-        label="Text2:"
+        label="ที่อยู่:"
         label-for="input-2"
         description=""
       >
@@ -54,7 +54,7 @@
       </b-form-group>
       <b-form-group
         id="input-group-1"
-        label="Text3:"
+        label="ติดต่อ:"
         label-for="input-3"
         description=""
       >
@@ -68,7 +68,7 @@
       </b-form-group>
       <b-form-group
         id="input-group-1"
-        label="Text4:"
+        label="เว็บไซต์:"
         label-for="input-4"
         description=""
       >

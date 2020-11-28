@@ -72,7 +72,7 @@
  
       <b-form-group
         id="input-data-1"
-        label="Data Start:"
+        label="วันที่เริ่มประกาศ:"
         label-for="input-data-1"
         
         
@@ -86,8 +86,8 @@
     </div>
 
         
-      <b-button @click="adddocument( text1,text2,week1,file) " variant="primary">Add</b-button>&nbsp;      
-      <b-button type="reset" variant="warning">Reset</b-button>
+      <b-button @click="adddocument( text1,text2,week1,file) " variant="primary">บันทึก</b-button>&nbsp;      
+      <b-button type="reset" variant="warning">ยกเลิก</b-button>
 
     </b-form>
 </div>

@@ -37,7 +37,7 @@
       </b-form-group>
        <b-form-group
         id="input-data-1"
-        label="Data Start:"
+        label="วันเริ่มประกาศทุน:"
         label-for="input-data-1"
       
         description=""
@@ -47,7 +47,7 @@
       </b-form-group>
        <b-form-group
         id="input-data-2"
-        label="Data End:"
+        label="วันสิ้นสุดทุน:"
         label-for="input-data-2"
       
         description=""

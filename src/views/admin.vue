@@ -15,7 +15,7 @@
         <b-navbar-nav >
         <b-nav-item active href="/admin/res">ทุนวิจัย</b-nav-item>
         <b-nav-item active href="/admin/doc">เอกสาร</b-nav-item>
-        <b-nav-item active href="/admin/qus">คำถามทั่วไป</b-nav-item>
+        <b-nav-item active href="/admin/qus">คำถามที่พบบ่อย(FAQ)</b-nav-item>
 
      
       </b-navbar-nav>
@@ -23,7 +23,7 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
             <b-nav-form>
-             <b-button  active href="/admin/editdetail" variant="success">Edit Detail bar</b-button>
+             <b-button  active href="/admin/editdetail" variant="success">แก้ไขข้อมูลการติดต่อ</b-button>
         </b-nav-form>
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
@@ -63,7 +63,7 @@
 
   </div >
    <b-container class="mt-3  bv-example-row">
-     <h4>ทุนวิจัย <b-button type="" active href="/admin/researchfundsadd" variant="success">Add</b-button></h4>
+     <h4>ทุนวิจัย <b-button type="" active href="/admin/researchfundsadd" variant="success">เพิ่ม</b-button></h4>
    <b-list-group style="max-width: 100%;">
      
       <b-list-group-item class="d-flex align-items-center" :key="key" v-for="(research, key) in researchs" :href="'/admin/researchfundsdetail/'+key">
@@ -83,7 +83,7 @@
     </b-list-group>
    </b-container>
       <b-container class="mt-3 bv-example-row">
-     <h4>เอกสาร <b-button type="" active href="/admin/documentadd" variant="success">Add</b-button></h4>
+     <h4>เอกสาร <b-button type="" active href="/admin/documentadd" variant="success">เพิ่ม</b-button></h4>
    <b-list-group style="max-width: 100%;">
      
     <b-list-group-item  class="d-flex align-items-center" :key="key" v-for="(document, key) in documents" :href="'/admin/documentdetail/'+key">
@@ -104,7 +104,7 @@
     </b-list-group>
    </b-container>
       <b-container class="mt-3 bv-example-row">
-     <h4>คำถามทั่วไป <b-button type="" active href="/admin/addquestion" variant="success">Add</b-button></h4>
+     <h4>คำถามที่พบบ่อย(FAQ) <b-button type="" active href="/admin/addquestion" variant="success">เพิ่ม</b-button></h4>
    <b-list-group style="max-width: 100%;">     
       <b-list-group-item class="d-flex align-items-center" :href="'/admin/questiondetail/'+key" :key="key" v-for="(question, key) in questions">
        <img height="25px" src="https://icons-for-free.com/iconfiles/png/512/question+icon-1320195549329729185.png" >

@@ -13,14 +13,14 @@
         <b-navbar-nav >
         <b-nav-item active href="/admin/res">ทุนวิจัย</b-nav-item>
         <b-nav-item active href="/admin/doc">เอกสาร</b-nav-item>
-        <b-nav-item active href="/admin/qus">คำถามทั่วไป</b-nav-item>
+        <b-nav-item active href="/admin/qus">คำถามที่พบบ่อย(FAQ)</b-nav-item>
      
       </b-navbar-nav>
       
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
          <b-nav-form>
-             <b-button  active href="/admin/editdetail" variant="success">Edit Detail bar</b-button>
+             <b-button  active href="/admin/editdetail" variant="success">แก้ไขข้อมูลการติดต่อ</b-button>
         </b-nav-form>
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
@@ -36,7 +36,65 @@
  <div class="mt-3 container" >
       </div >
    <b-container class="mt-3">
-     <h2>ทุนวิจัย <b-button type="a" active href="/admin/researchfundsadd" variant="success">Add</b-button></h2>
+     <h2>ทุนวิจัย <b-button type="a" active href="/admin/researchfundsadd" variant="success">เพิ่ม</b-button></h2>
+       <b-row>
+      <b-col lg="6" class="my-2">
+        <b-form-group
+          label="Sort"
+          label-cols-sm="1"
+          label-align-sm="right"
+          label-size="sm"
+          label-for="sortBySelect"
+          class="mb-0"
+        >
+          <b-input-group size="sm">
+            <b-form-select v-model="sortBy" class="w-10">
+              <template #first>
+                <option value="name">-- ชื่อ --</option>
+                <option value="date">-- เวลา --</option>
+              </template>
+            </b-form-select>
+            <b-form-select v-model="sorttype" class="w-25">
+              <template #first>
+                <option value="">-- none --</option>
+                <option value="in">-- ทุนภายในคณะวิทยาลัยการคอมพิวเตอร์ --</option>
+                <option value="out">-- ทุนภายนอกมหาวิทยาลัย --</option>
+                <option value="psu">-- ทุนภายในมหาวิทยาลัย --</option>
+              </template>
+            </b-form-select>
+            <b-form-select v-model="sortDesc" size="sm" class="w-10">
+              <option :value="false">Asc</option>
+              <option :value="true">Desc</option>
+            </b-form-select>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+      <b-col lg="6" class="my-2">
+        <b-form-group
+          label="Filter"
+          label-cols-sm="2"
+          label-align-sm="right"
+          label-size="sm"
+          label-for="filterInput"
+          class="mb-0"
+        >
+          <b-input-group size="sm">
+            <b-form-input
+              v-model="filter"
+              type="search"
+              id="filterInput"
+              placeholder="Type to Search"
+            ></b-form-input>
+            <b-input-group-append>
+              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+            </b-input-group-append>
+            
+          </b-input-group>
+          
+        </b-form-group>
+      </b-col>
+      
+      </b-row>
    <b-list-group style="max-width: 100%;">
      
        <b-list-group-item class="d-flex align-items-center" :key="key" v-for="(research, key) in researchs" :href="'/admin/researchfundsdetail/'+key">
@@ -45,8 +103,18 @@
         <b-badge>{{research.week1}}</b-badge>
       </b-list-group-item>
         
-     
+      <div class="overflow-auto mt-3">
+          <b-pagination
+            v-model="currentPage"
+            :total-rows="repage"
+            :per-page="perPage"
+            pills
+            v-on:change="changePage"
+            align="right"
+          ></b-pagination>
+        </div> 
     </b-list-group>
+
    </b-container>
    
  
@@ -65,17 +133,43 @@ export default {
  
   data () {
     return {
-      questions: {}     ,
-      documents: {} ,
-       researchs: {}     
+     perPage: 10,
+      currentPage: 1,
+      researchs: {},
+      dataList: [],
+      repage: {},
+      sortBy: "name",
+      sorttype: "",
+      filter:"",
+      sortDesc: false,
     }
   },
+  methods: {
+    changePage(page) {
+      this.researchs = {};
+      this.dataList
+        .slice((page - 1) * this.perPage, page * this.perPage)
+        .forEach((item) => {
+          this.researchs[item[0]] = item[1];
+        });
+    },
+  },
   mounted () {
-
-      researchRef.on('value', (snapshot) => {
-      this.researchs = snapshot.val()
-    })
-  }
+researchRef.on("value", (snapshot) => {
+      this.dataList = Object.entries(snapshot.val());
+      this.dataList
+        .slice(
+          (this.currentPage - 1) * this.perPage,
+          this.currentPage * this.perPage
+        )
+        .forEach((item) => {
+          this.researchs[item[0]] = item[1];
+        });
+      const val = snapshot.val();
+      const arr = Object.values(val); //เปลี่ยงจาก Oject เป็น Area
+      this.repage = arr.length;
+    });
+  },
 }
 </script>
 

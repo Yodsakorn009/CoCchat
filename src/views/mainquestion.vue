@@ -15,7 +15,7 @@
         <b-navbar-nav >
         <b-nav-item active href="/Research">ทุนวิจัย</b-nav-item>
         <b-nav-item active href="/document">เอกสาร</b-nav-item>
-        <b-nav-item active href="/question">คำถามทั่วไป</b-nav-item>
+        <b-nav-item active href="/question">คำถามที่พบบ่อย(FAQ)</b-nav-item>
       </b-navbar-nav>
       
       <!-- Right aligned nav items -->
@@ -35,7 +35,7 @@
 </div>
 
    <b-container class="mt-3">
-     <h2>คำถามทั่วไป</h2>
+     <h2>คำถามที่พบบ่อย(FAQ)</h2>
      <center> <img height="230px" weight=auto  src="https://firebasestorage.googleapis.com/v0/b/chatbot01-hucg.appspot.com/o/73-738732_transparent-green-question-mark-png-questions-mark-in.jpg?alt=media&token=942f85bb-d0a6-4cca-99c9-e4f795e571d5"></center>
      </b-container>
      <b-container class="mt-3"  :key="key" v-for="(question, key) in questions">
