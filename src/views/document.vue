@@ -40,8 +40,8 @@
        <b-row>
       <b-col lg="4" class="my-2">
         <b-form-group
-          label="Sort"
-          label-cols-sm="1"
+          label="เรียงโดย"
+          label-cols-sm="2"
           label-align-sm="right"
           label-size="sm"
           label-for="sortBySelect"
@@ -65,7 +65,7 @@
         </b-col>
       <b-col lg="6" class="my-2">
         <b-form-group
-          label="Filter"
+          label="ค้นหา"
           label-cols-sm="2"
           label-align-sm="right"
           label-size="sm"

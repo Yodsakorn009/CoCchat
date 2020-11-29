@@ -40,9 +40,9 @@
        <b-row>
       <b-col lg="6" class="my-2">
         <b-form-group
-          label="Sort"
-          label-cols-sm="1"
-          label-align-sm="right"
+          label="เรียงโดย"
+          label-cols-sm="15"
+          label-align-sm="left"
           label-size="sm"
           label-for="sortBySelect"
           class="mb-0"
@@ -71,7 +71,7 @@
       </b-col>
       <b-col lg="6" class="my-2">
         <b-form-group
-          label="Filter"
+          label="ค้นหา"
           label-cols-sm="2"
           label-align-sm="right"
           label-size="sm"
@@ -100,7 +100,7 @@
        <b-list-group-item class="d-flex align-items-center" :key="key" v-for="(research, key) in researchs" :href="'/admin/researchfundsdetail/'+key">
         <img height="25px" src="https://img.icons8.com/cotton/2x/document-1.png">
         <span class="mr-auto" >{{research.name}}</span>
-        <b-badge>{{research.week1}}</b-badge>
+        <b-badge>{{research.firstweek}}</b-badge>
       </b-list-group-item>
         
       <div class="overflow-auto mt-3">
