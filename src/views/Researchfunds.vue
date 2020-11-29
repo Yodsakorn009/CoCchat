@@ -151,7 +151,8 @@ export default {
       this.dataList
         .slice((page - 1) * this.perPage, page * this.perPage)
         .forEach((item) => {
-          this.researchs[item[0]] = item[1];
+       
+       this.researchs[item[0]] = item[1];
         });
     },
   },
