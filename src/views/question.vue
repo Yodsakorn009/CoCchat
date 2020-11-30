@@ -35,30 +35,9 @@
 </div>
  <div class="mt-3 container" >
       </div >
-   <b-container class="mt-3" >
-     <h2>คำถามที่พบบ่อย(FAQ)</h2>
-        <b-row>
-      <b-col lg="4" class="my-2">
-        <b-form-group
-          label="เรียงโดย"
-          label-cols-sm="2"
-          label-align-sm="right"
-          label-size="sm"
-          label-for="sortBySelect"
-          class="mb-0"
-        >
-          <b-input-group size="sm">
-        
-            <b-form-select v-model="sortDesc" size="sm" class="w-10">
-              <option :value="false">Asc</option>
-              <option :value="true">Desc</option>
-            </b-form-select>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
-       <b-col lg="2" class="my-2">
-        </b-col>
-      <b-col lg="6" class="my-2">
+   <b-container class="mt-3" ><b-row>
+     <b-col lg="6">
+     <h2>คำถามที่พบบ่อย(FAQ)</h2></b-col>  <b-col lg="6" class="my-2">
         <b-form-group
           label="ค้นหา"
           label-cols-sm="2"
@@ -73,17 +52,15 @@
               type="search"
               id="filterInput"
               placeholder="Type to Search"
+               v-on:change="search(filter)"
             ></b-form-input>
-            <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
-            </b-input-group-append>
+          
             
           </b-input-group>
           
         </b-form-group>
-      </b-col>
-      
-      </b-row>
+      </b-col></b-row>
+      <br>
    <b-list-group style="max-width: 100%;" >
      
       <b-list-group-item class="d-flex align-items-center" :href="'/mainquestion/'+key" :key="key" v-for="(question, key) in questions">
@@ -133,6 +110,25 @@ export default {
       this.dataList.slice((page - 1) * this.perPage, page * this.perPage).forEach((item) => {
         this.questions[item[0]] = item[1];
       })
+    },
+    search(filter){
+      this.questions = {};
+        questionRef.on("value", (snapshot) => {
+      this.dataList = Object.entries(snapshot.val());
+       const filteredList = this.dataList.filter(item => item[1].name.indexOf(filter) >= 0);
+            if (filteredList.length > 0) {
+             filteredList.slice((this.currentPage - 1) * this.perPage,
+          this.currentPage * this.perPage
+        )
+        .forEach((item) => {
+          this.questions[item[0]] = item[1];
+             this.dataList= filteredList
+        });}
+     
+      const val = filteredList;
+      const arr = Object.values(val); //เปลี่ยงจาก Oject เป็น Area
+      this.quespage = arr.length;
+    });
     }},
   mounted () {
     questionRef.on('value', (snapshot) => {

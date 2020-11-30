@@ -36,8 +36,34 @@
  <div class="mt-3 container" >
       </div >
    <b-container class="mt-3">
-     <h2>ทุนวิจัย <b-button type="a" active href="/admin/researchfundsadd" variant="success">เพิ่ม</b-button></h2>
-       <b-row>
+    
+     <b-row>
+     <b-col lg="6">
+     <h2>ทุนวิจัย <b-button type="a" active href="/admin/researchfundsadd" variant="success">เพิ่ม</b-button></h2></b-col>  <b-col lg="6" class="my-2">
+        <b-form-group
+          label="ค้นหา"
+          label-cols-sm="2"
+          label-align-sm="right"
+          label-size="sm"
+          label-for="filterInput"
+          class="mb-0"
+        >
+          <b-input-group size="sm">
+            <b-form-input
+              v-model="filter"
+              type="search"
+              id="filterInput"
+              placeholder="Type to Search"
+               v-on:change="search(filter)"
+            ></b-form-input>
+          
+            
+          </b-input-group>
+          
+        </b-form-group>
+      </b-col></b-row>
+      <br>
+       <!-- <b-row>
       <b-col lg="6" class="my-2">
         <b-form-group
           label="เรียงโดย"
@@ -94,7 +120,7 @@
         </b-form-group>
       </b-col>
       
-      </b-row>
+      </b-row> -->
    <b-list-group style="max-width: 100%;">
      
        <b-list-group-item class="d-flex align-items-center" :key="key" v-for="(research, key) in researchs" :href="'/admin/researchfundsdetail/'+key">
@@ -152,7 +178,25 @@ export default {
         .forEach((item) => {
           this.researchs[item[0]] = item[1];
         });
-    },
+    },search(filter){
+      this.researchs = {};
+        researchRef.on("value", (snapshot) => {
+      this.dataList = Object.entries(snapshot.val());
+       const filteredList = this.dataList.filter(item => item[1].name.indexOf(filter) >= 0);
+            if (filteredList.length > 0) {
+             filteredList.slice((this.currentPage - 1) * this.perPage,
+          this.currentPage * this.perPage
+        )
+        .forEach((item) => {
+          this.researchs[item[0]] = item[1];
+             this.dataList= filteredList
+        });}
+     
+      const val = filteredList;
+      const arr = Object.values(val); //เปลี่ยงจาก Oject เป็น Area
+      this.repage = arr.length;
+    });
+    }
   },
   mounted () {
 researchRef.on("value", (snapshot) => {
