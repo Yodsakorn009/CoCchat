@@ -55,7 +55,7 @@
               type="search"
               id="filterInput"
               placeholder="Type to Search"
-               v-on:change="search(filter)"
+               v-on:change="search()"
             ></b-form-input>
           
             
@@ -171,11 +171,11 @@ export default {
       })
     }
     ,
-    search(filter){
+    search(){
       this.documents = {};
         documentRef.on("value", (snapshot) => {
       this.dataList = Object.entries(snapshot.val());
-       const filteredList = this.dataList.filter(item => item[1].name.indexOf(filter) >= 0);
+       const filteredList = this.dataList.filter(item => item[1].name.indexOf(this.filter) >= 0);
             if (filteredList.length > 0) {
              filteredList.slice((this.currentPage - 1) * this.perPage,
           this.currentPage * this.perPage

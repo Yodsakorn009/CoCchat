@@ -52,7 +52,7 @@
               type="search"
               id="filterInput"
               placeholder="Type to Search"
-               v-on:change="search(filter)"
+               v-on:change="search()"
             ></b-form-input>
           
             
@@ -178,11 +178,12 @@ export default {
        
        this.researchs[item[0]] = item[1];
         });
-    },search(filter){
+    },search(){
       this.researchs = {};
         researchRef.on("value", (snapshot) => {
       this.dataList = Object.entries(snapshot.val());
-       const filteredList = this.dataList.filter(item => item[1].name.indexOf(filter) >= 0);
+       const filteredList = this.dataList.filter(item => item[1].name.indexOf(this.filter) >= 0);
+      //  &&item[1].category.indexOf("")
             if (filteredList.length > 0) {
              filteredList.slice((this.currentPage - 1) * this.perPage,
           this.currentPage * this.perPage
