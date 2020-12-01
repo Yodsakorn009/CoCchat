@@ -39,31 +39,8 @@
     
      <b-row>
      <b-col lg="6">
-     <h2>ทุนวิจัย <b-button type="a" active href="/admin/researchfundsadd" variant="success">เพิ่ม</b-button></h2></b-col>  <b-col lg="6" class="my-2">
-        <b-form-group
-          label="ค้นหา"
-          label-cols-sm="2"
-          label-align-sm="right"
-          label-size="sm"
-          label-for="filterInput"
-          class="mb-0"
-        >
-          <b-input-group size="sm">
-            <b-form-input
-              v-model="filter"
-              type="search"
-              id="filterInput"
-              placeholder="Type to Search"
-               v-on:change="search()"
-            ></b-form-input>
-          
-            
-          </b-input-group>
-          
-        </b-form-group>
-      </b-col></b-row>
-      <br>
-       <!-- <b-row>
+     <h2>ทุนวิจัย <b-button type="a" active href="/admin/researchfundsadd" variant="success">เพิ่ม</b-button></h2></b-col> </b-row>
+      <b-row>
       <b-col lg="6" class="my-2">
         <b-form-group
           label="เรียงโดย"
@@ -74,21 +51,23 @@
           class="mb-0"
         >
           <b-input-group size="sm">
-            <b-form-select v-model="sortBy" class="w-10">
+            <b-form-select v-model="sortBy" v-on:change="changeType" class="w-10">
               <template #first>
                 <option value="name">-- ชื่อ --</option>
                 <option value="date">-- เวลา --</option>
               </template>
             </b-form-select>
-            <b-form-select v-model="sorttype" class="w-25">
+            <b-form-select v-model="sorttype" class="w-25"  v-on:change="search" >
               <template #first>
                 <option value="">-- none --</option>
-                <option value="in">-- ทุนภายในคณะวิทยาลัยการคอมพิวเตอร์ --</option>
-                <option value="out">-- ทุนภายนอกมหาวิทยาลัย --</option>
-                <option value="psu">-- ทุนภายในมหาวิทยาลัย --</option>
+                <option value="ทุนภายในวิทยาลัยการคอมพิวเตอร์">-- ทุนภายในวิทยาลัยการคอมพิวเตอร์ --</option>
+                <option value="ทุนภายนอกมหาวิทยาลัย">-- ทุนภายนอกมหาวิทยาลัย --</option>
+                <option value="ทุนภายในมหาวิทยาลัย">-- ทุนภายในมหาวิทยาลัย --</option>
+
+
               </template>
             </b-form-select>
-            <b-form-select v-model="sortDesc" size="sm" class="w-10">
+            <b-form-select v-model="sortDesc" size="sm" v-on:change="changeType" class="w-10">
               <option :value="false">Asc</option>
               <option :value="true">Desc</option>
             </b-form-select>
@@ -110,17 +89,17 @@
               type="search"
               id="filterInput"
               placeholder="Type to Search"
+              v-on:input="search"
             ></b-form-input>
-            <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
-            </b-input-group-append>
+          
             
           </b-input-group>
           
         </b-form-group>
       </b-col>
       
-      </b-row> -->
+      </b-row>
+      <br>
    <b-list-group style="max-width: 100%;">
      
        <b-list-group-item class="d-flex align-items-center" :key="key" v-for="(research, key) in researchs" :href="'/admin/researchfundsdetail/'+key">
@@ -155,11 +134,39 @@ import firebase from "../components/firebase";
 var database = firebase.database()
 
 var researchRef = database.ref('/research')
+
+const sortData = (dataList, sortBy, sortDesc) => {
+  console.log(sortDesc);
+  return dataList.sort((a, b) => {
+      const aData = a[1];
+      const bData = b[1];
+      if (sortBy === 'date') {
+        const aDate = new Date(aData.firstweek);
+        const bDate = new Date(bData.firstweek);
+        return sortDesc  ?  bDate.valueOf() - aDate.valueOf() : aDate.valueOf() - bDate.valueOf() 
+      } else {
+        return sortDesc ? bData.name.localeCompare(aData.name) : aData.name.localeCompare(bData.name) 
+      }
+  })
+}
+
+// const searchData = (dataList, search) => {
+//   return dataList.filter(item => item[1].name.indexOf(search) >= 0)
+// }
+
+const selectPage = (dataList, page, pageSize) => {
+  return dataList.slice((page - 1) * pageSize, page * pageSize)
+}
+
+const filterType = (dataList, type) => {
+  return dataList.filter(item => type === '' || item[1].category === type)
+}
+
+
 export default {
- 
-  data () {
+  data() {
     return {
-     perPage: 10,
+      perPage: 10,
       currentPage: 1,
       researchs: {},
       dataList: [],
@@ -168,53 +175,71 @@ export default {
       sorttype: "",
       filter:"",
       sortDesc: false,
-    }
+    };
   },
   methods: {
     changePage(page) {
       this.researchs = {};
-      this.dataList
-        .slice((page - 1) * this.perPage, page * this.perPage)
-        .forEach((item) => {
-          this.researchs[item[0]] = item[1];
-        });
-    },search(){
-      this.researchs = {};
-        researchRef.on("value", (snapshot) => {
-      this.dataList = Object.entries(snapshot.val());
-       const filteredList = this.dataList.filter(item => item[1].name.indexOf(this.filter) >= 0);
-            if (filteredList.length > 0) {
-             filteredList.slice((this.currentPage - 1) * this.perPage,
-          this.currentPage * this.perPage
-        )
-        .forEach((item) => {
-          this.researchs[item[0]] = item[1];
-             this.dataList= filteredList
-        });}
+
+       const sortedData = sortData(this.dataList, this.sortBy, this.sortDesc);
+       const pagedData = selectPage(sortedData, page, this.perPage);
+
+       pagedData.forEach(item => {
+         this.researchs[item[0]] = item[1];
+       })
+
      
-      const val = filteredList;
-      const arr = Object.values(val); //เปลี่ยงจาก Oject เป็น Area
-      this.repage = arr.length;
-    });
+      this.repage = sortedData.length;
+
+    },
+    changeType() {
+      const sortedData = sortData(this.dataList, this.sortBy, this.sortDesc);
+      const pagedData = selectPage(sortedData, this.currentPage, this.perPage);
+
+      this.researchs = {};
+
+       pagedData.forEach(item => {
+         this.researchs[item[0]] = item[1];
+       });
+
+       this.repage = sortedData.length;
+    },
+    search(){
+researchRef.on("value", (snapshot) => {
+
+      this.dataList = Object.entries(snapshot.val());
+
+      this.researchs = {};
+   
+      let filteredList = filterType(this.dataList, this.sorttype);
+      filteredList = filteredList.filter(item => item[1].name.indexOf(this.filter) >= 0);
+      //  &&item[1].category.indexOf("")
+      const pagedData = selectPage(filteredList, this.currentPage, this.perPage);
+        pagedData.forEach((item) => {
+          this.researchs[item[0]] = item[1];
+        })
+      this.dataList = filteredList
+      this.repage = filteredList.length;
+})
     }
   },
-  mounted () {
-researchRef.on("value", (snapshot) => {
+  mounted() {
+    researchRef.on("value", (snapshot) => {
+
       this.dataList = Object.entries(snapshot.val());
-      this.dataList
-        .slice(
-          (this.currentPage - 1) * this.perPage,
-          this.currentPage * this.perPage
-        )
-        .forEach((item) => {
-          this.researchs[item[0]] = item[1];
-        });
-      const val = snapshot.val();
-      const arr = Object.values(val); //เปลี่ยงจาก Oject เป็น Area
-      this.repage = arr.length;
+
+       const sortedData = sortData(this.dataList, this.sortBy, this.sortDesc);
+       const pagedData = selectPage(sortedData, this.currentPage, this.perPage);
+
+       pagedData.forEach(item => {
+         this.researchs[item[0]] = item[1];
+       })
+
+     
+      this.repage = sortedData.length;
     });
   },
-}
+};
 </script>
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
