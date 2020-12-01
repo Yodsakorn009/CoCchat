@@ -47,7 +47,7 @@
       </b-form-group>
        <b-form-group
         id="input-data-2"
-        label="วันสิ้นสุดทุน:"
+        label="วันสิ้นสุดนำเสนอโครงการ:"
         label-for="input-data-2"
       
         description=""

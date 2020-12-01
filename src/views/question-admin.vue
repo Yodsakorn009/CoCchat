@@ -53,8 +53,8 @@
         >
           <b-input-group size="sm">
             <b-form-select v-model="sortDesc" size="sm" v-on:change="changeType" class="w-10">
-              <option :value="false">Asc</option>
-              <option :value="true">Desc</option>
+              <option :value="false">ก-ฮ</option>
+              <option :value="true">ฮ-ก</option>
             </b-form-select>
           </b-input-group>
         </b-form-group>

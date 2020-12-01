@@ -49,7 +49,7 @@
    วันที่ประกาศ : {{research.firstweek}}
     </div>
      <div class="container">
-    วันหมดเขตของโครงการ : {{research.endweek}}
+    วันสิ้นสุดรับเสนอโครงการ : {{research.endweek}}
     </div>
      <div class="container">
        

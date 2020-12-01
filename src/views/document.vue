@@ -55,8 +55,8 @@
                 <option value="date">-- เวลา --</option>
             </b-form-select>
             <b-form-select v-model="sortDesc" size="sm" v-on:change="changeType" class="w-10">
-              <option :value="false">Asc</option>
-              <option :value="true">Desc</option>
+              <option :value="false">น้อย-มาก</option>
+              <option :value="true">มาก-น้อย</option>
             </b-form-select>
           </b-input-group>
         </b-form-group>
